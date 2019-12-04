@@ -78,6 +78,7 @@ export default {
 		overflow: hidden;
 		display: flex;
 		justify-content: space-between;
+		width: 100%;
 		.tabs-item{
 			margin: 0.15rem auto;
 			padding: 0 0.2rem;

@@ -27,7 +27,7 @@ export default {
 			iconList:[
 				{
 					desc:'热报课程',
-					path:'/dwonload',
+					path:'/hot-course',
 					src:require('../../../assets/img/m-home-icon-1.png')
 				},
 				{
@@ -85,6 +85,7 @@ export default {
 	margin-top: -0.3rem;
 	z-index: 2;
 	background: white;
+	
 	.tabs-top{
 		background:white;
 		height: 0.3rem;

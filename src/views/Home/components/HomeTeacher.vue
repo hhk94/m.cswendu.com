@@ -60,7 +60,9 @@ export default {
 		}
 	}
 	.teacher-swiper{
-		
+		.swiper-container{
+			width: 100%;
+		}
 		.swiper-slide{
 			width: 80%;
 			

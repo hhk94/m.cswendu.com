@@ -1,5 +1,5 @@
 <template>
-	<div class="header" 
+<!-- 	<div class="header" 
 	v-show="showAbs"
 	:style="opacityStyle">
 		<div class="header-body">
@@ -10,7 +10,24 @@
 				<img src="@/assets/img/m-phone.png" alt="">
 			</div>
 		</div>
+	</div> -->
+	<div class="header header1" >
+		<div class="header-body">
+			<div class="m-logo">
+				<img src="@/assets/img/m-logo.png" alt="">
+			</div>
+			<div class="m-phone">
+				<img src="@/assets/img/m-phone.png" alt="">
+			</div>
+		</div>
 	</div>
+	<!-- <div>
+		
+		<div class="header header2" v-show="this.headerName=='header1'">
+			a
+		</div>
+	</div> -->
+	
 </template>
 
 <script>
@@ -19,31 +36,20 @@ export default {
 	name:'HomeHeader',
 	data() {
 		return {
-			showAbs:false,
-			opacityStyle:{
-				opacity:0	
-			}
+			
 		}
+	},
+	props:{
+		// headerName:String
 	},
 	mounted(){
-		window.addEventListener('scroll',this.scroll)
+		
 	},
 	destroyed() {
-		window.removeEventListener('scroll',this.scroll)
+		
 	},
 	methods:{
-		scroll(){
-			console.log('a')
-			const top = document.documentElement.scrollTop
-			if(top>60){
-				let opacity = top/140
-				opacity = opacity>1?1:opacity
-				this.opacityStyle = {opacity}
-				this.showAbs=true
-			}else{
-				this.showAbs=false
-			}
-		}
+	
 	}
 }
 </script>

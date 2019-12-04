@@ -8,20 +8,31 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+	{ 
+	path: '/',
+	redirect: '/shouye' ,
+	},
     {
-		path: "/",
+		path: "/shouye",
 		name: "Home",
 		component: Home,
 		meta:{
 		},  
     },
-   {
+	{
 		path: "/course",
 		name: "Course",
 		component: Course,
 		meta:{
 		},  
-   } 
+	},
+	{
+		path: "/hot-course",
+		name: "HotCourse",
+		component: () => import( './views/HotCourse/HotCourse'),
+		meta:{
+		},  
+	} 
   ]
 });
 

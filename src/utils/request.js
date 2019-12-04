@@ -24,7 +24,7 @@ export function tryHideFullScreenLoading() {
 }
 function startLoading() {
 	loadingInstance = Loading.service({
-		target:"#app",
+		target:"html",
 		lock: true,
 		text: '加载中...',
 		spinner: 'el-icon-loading',

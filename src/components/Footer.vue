@@ -1,36 +1,40 @@
 <template>
-	<div class="footer">
-		<div 
-		@click="itemClick('shouye')" 
-		:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='shouye'}">
-			<i class="iconfont icon-shouye"></i>
-			<p>首页</p>
-		</div>
-		<div
-		@click="itemClick('kecheng')"
-		:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='kecheng'}">
-			<i class="iconfont icon-kecheng"></i>
-			<p>课程</p>
-		</div>
-		<div
-		@click="itemClick('kefu')"
-		:class="{'footer-item':true,'footer-item-center':true,choose:this.$store.state.Home.default_footer_choose=='kefu'}">
-			<i class="iconfont icon-kefu"></i>
-			
-		</div>
-		<div
-		@click="itemClick('zixun')"
-		:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='zixun'}">
-			<i class="iconfont icon-zixundianji"></i>
-			<p>资讯</p>
-		</div>
-		<div 
-		@click="itemClick('wode')"
-		:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='wode'}">
-			<i class="iconfont icon-wode"></i>
-			<p>关于我们</p>
+	<div>
+		<div class="top-notice" v-show="this.alreadyTop">我已经到头啦！~</div>
+		<div class="footer">
+			<div 
+			@click="itemClick('shouye')" 
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='shouye'}">
+				<i class="iconfont icon-shouye"></i>
+				<p>首页</p>
+			</div>
+			<div
+			@click="itemClick('kecheng')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='kecheng'}">
+				<i class="iconfont icon-kecheng"></i>
+				<p>课程</p>
+			</div>
+			<div
+			@click="itemClick('kefu')"
+			:class="{'footer-item':true,'footer-item-center':true,choose:this.$store.state.Home.default_footer_choose=='kefu'}">
+				<i class="iconfont icon-kefu"></i>
+				
+			</div>
+			<div
+			@click="itemClick('zixun')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='zixun'}">
+				<i class="iconfont icon-zixundianji"></i>
+				<p>资讯</p>
+			</div>
+			<div 
+			@click="itemClick('about-wode')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='about-wode'}">
+				<i class="iconfont icon-wode"></i>
+				<p>关于我们</p>
+			</div>
 		</div>
 	</div>
+	
 </template>
 
 <script>
@@ -39,20 +43,29 @@ export default {
 	name:'HomeFooter',
 	data() {
 		return {
-			
+			// showBottom:false
 		}
 	},
 	methods:{
 		itemClick(item){
-			this.$store.dispatch('Home/footerClick',item);
-			console.log(this.$store.state.Home.default_footer_choose)
-			
+			this.$store.dispatch('Home/footerClick',item);	
+			this.$router.push({path:item})
 		}
+	},
+	props:{
+		alreadyTop:Boolean
+		
 	}
 }
 </script>
 
 <style scoped lang="less">
+.top-notice{
+	text-align: center;
+	color: @theme-color;
+	font-size: 0.2rem;
+	padding: 0.1rem 0;
+}
 .footer{
 	position: fixed;
 	bottom: 0;

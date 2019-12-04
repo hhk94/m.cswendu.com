@@ -6,9 +6,10 @@
 - 1.前后端分离
 - 2.公共接口请求地址
 - 3.公共图片引用地址
-- 4.进入页面验证token
+- 4.进入页面验证common-token
 - 5.console.log封装，仅在调试模式下打印
-- 5.基于vuex进行状态管理
+- 6.基于vuex进行状态管理,命名空间模块化分割
+- 7.api统一封装，管理axios请求
 ## Project setup
 ```
 npm install

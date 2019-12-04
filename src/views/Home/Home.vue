@@ -1,22 +1,33 @@
 <template>
-	<div>
-		<home-header></home-header>
-		<home-top-swiper :bannerList="bannerList" ></home-top-swiper>
-		<home-tabs></home-tabs>
-		<home-hot :newsList="newsList" :questionList="questionList"></home-hot>
-		<home-course 
-		:courseClassList="courseClassList"
-		@courseClassId="getCourseList"
-		:courseList='courseList'></home-course>
-		<home-teacher :hotTeacherList="hotTeacherList"></home-teacher>
-		<home-comment :commentList="commentList"></home-comment>
-		<home-news :tokenOver="tokenOver"></home-news>
-		<home-footer></home-footer>
+	<div >
+		<component 
+		:is="headerName" 
+		v-show="showAbs"
+		:style="opacityStyle"></component>
+		<div class="home-index" ref="wrapper">
+			<div>
+				<home-top-swiper :bannerList="bannerList" ></home-top-swiper>
+				<home-tabs></home-tabs>
+				<home-hot :newsList="newsList" :questionList="questionList"></home-hot>
+				<home-course 
+				:courseClassList="courseClassList"
+				@courseClassId="getCourseList"
+				:courseList='courseList'></home-course>
+				<home-teacher :hotTeacherList="hotTeacherList"></home-teacher>
+				<home-comment :commentList="commentList"></home-comment>
+				<home-news 
+				:tokenOver="tokenOver" 
+				:footer_bottom="footer_bottom"
+				:allNewsList="allNewsList"></home-news>
+			</div>
+		</div>
+		<home-footer :alreadyTop="alreadyTop"></home-footer>	
 	</div>
 	
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 import HomeTopSwiper from './components/HomeTopSwiper'
 import HomeTabs from './components/HomeTabs'
 import HomeHot from './components/HomeHot'
@@ -24,16 +35,17 @@ import HomeCourse from './components/HomeCourse'
 import HomeTeacher from './components/HomeTeacher'
 import HomeComment from './components/HomeComment'
 import HomeNews from './components/HomeNews'
-import HomeHeader from '@/components/Header'
+import HomeDefaultHeader from '@/components/DefaultHeader'
 import HomeFooter from '@/components/Footer'
-import { getHomeBanner,getNewsClass,getNewsList,getQuestionList,getCourseClass,getCourseList,getHotTeacher,getComment } from '@/api/Home'
+import { getHomeBanner,getHotTeacher} from '@/api/Home'
+import {getNewsClass,getNewsList,getQuestionList,getCourseClass,getCourseList,getComment } from '@/api/Base'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
 export default {
 	name:"Home",
 	components:{
-		HomeHeader,
+		HomeDefaultHeader,
 		HomeTopSwiper,
 		HomeTabs,
 		HomeHot,
@@ -52,13 +64,29 @@ export default {
 			courseList:[],
 			hotTeacherList:[],
 			commentList:[],
-			tokenOver:false
+			allNewsList:[],
+			tokenOver:false,
+			//导航监听显示
+			showAbs:false,
+			opacityStyle:{
+				opacity:0	
+			},
+			//调用不同导航
+			headerName:'HomeDefaultHeader',
+			// 新闻页面下拉加载
+			page:1,
+			limit:4,
+			footer_bottom:false,
+			scroll:null,
+			alreadyTop:true
+			
 		}
 	},
 	mounted() {
 		this.init()
 	},
 	methods:{
+		
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			// token = token.content.user_token
@@ -69,6 +97,79 @@ export default {
 			this.getCourseClass()
 			this.getHotTeacher()
 			this.getComment()
+			this.getAllNews()
+			this.Scroll()
+		},
+		Scroll(){
+			this.scroll = new BScroll(this.$refs.wrapper,{
+				probeType:2,
+				pullUpLoad: {
+					threshold: -10
+				},
+				scrollX: false,
+				scrollY: true,
+				useTransition:false
+			})
+			this.scroll.on('scroll',(pos)=>{
+				const top = -pos.y
+				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
+				if(top>60){
+					let opacity = top/140
+					opacity = opacity>1?1:opacity
+					this.opacityStyle = {opacity}
+					this.showAbs = true
+				}else{
+					this.showAbs = false
+				}
+			})
+			this.scroll.on("pullingUp",()=>{
+				console_log('pullingUp')
+				
+				if(!this.footer_bottom){
+					this.getAllNews()
+					this.scroll.finishPullUp();
+					
+				}else{
+					console_log('end')
+					this.footer_bottom = true
+				}
+				
+			})
+			
+		},
+		//获取所有新闻 - 上拉加载
+		getAllNews(){
+			let data ={
+				user_token:store.getters.common_token,
+				app_class:'mobile',
+				page:this.page,
+				limit:this.limit
+			}
+			new Promise((resolve, reject) => {
+				getNewsList(data).then(response => {
+					resolve(response)
+					console_log(response)
+					if(response.state==0){
+						this.$message.error('getNews接口错误');
+					}else if(response.state==1){
+						const _list = response.content
+						this.allNewsList = [...this.allNewsList, ..._list];
+						this.$nextTick(() => {
+							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll
+						})
+						console_log(this.newsList)
+						if (_list.length < this.limit || this.page == 3) {
+							/* 所有数据加载完毕 */
+							this.footer_bottom = true
+							return;
+						}
+						/* 单次请求数据完毕 */
+						this.page++;	
+					}
+					}).catch(error => {
+						reject(error)
+				})
+			})
 		},
 		//获取banner
 		getBanner(){
@@ -108,7 +209,7 @@ export default {
 				})
 			})
 		},
-		//根据考研资讯获取新闻列表
+		//根据 - 考研资讯 - 获取新闻列表
 		async getNewsList(){
 			let news_class_ids = await this.getNewsClass()
 			console_log(news_class_ids)
@@ -269,6 +370,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.home-index{
+	height: 100%;
+	overflow: hidden;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 </style>
