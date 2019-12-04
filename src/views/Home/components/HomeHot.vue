@@ -87,19 +87,21 @@ export default {
 <style scoped lang="less">
 
 .home-hot{
-	& 
 	.hot-tab{
 		width: 63.2%;
 		margin: 0.3rem auto 0.14rem auto;
 		border-top: 1px solid #f2f2f2;
-		padding-top: 0.35rem;
+		
 		display: flex;
 		justify-content: space-between;
 		.hot-tab-item{
+			
+			padding-top: 0.35rem;
 			font-size: @tab-size;
-			color: @tab-color;
+			color:@sec-color;
 			position: relative;
 			&.active{
+				color: @tab-color;
 				&::after{
 					position: absolute;
 					left: 16px;

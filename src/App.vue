@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+	<keep-alive>
+		<router-view/>
+	</keep-alive>
+    
   </div>
 </template>
 
@@ -17,7 +20,7 @@ export default {
 #app{
 	touch-action: none;
 	/* background: ##f4f4f4; */
-	padding-bottom: 12rem;
+	// padding-bottom: 12rem;
 }
 #app/deep/.swiper-pagination-bullet{
 		border-radius: 0.08rem;

@@ -32,4 +32,42 @@ export function getQuestionList(data) {
   })
 }
 
+export function getCourseClass(data) {
+  return request({
+    url: '/app/list_course_class',
+    method: 'post',
+    data
+  })
+}
 
+export function getCourseList(data) {
+  return request({
+    url: '/app/list_course',
+    method: 'post',
+    data
+  })
+}
+
+export function getHotTeacher(data) {
+  return request({
+    url: '/app/teacher_hot',
+    method: 'post',
+    data
+  })
+}
+
+export function getComment(data) {
+  return request({
+    url: '/app/list_course_comment',
+    method: 'post',
+    data
+  })
+}
+
+export function getNews(data) {
+  return request({
+    url: '/app/list_news',
+    method: 'post',
+    data
+  })
+}

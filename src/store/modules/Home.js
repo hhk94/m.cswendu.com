@@ -3,16 +3,19 @@
 import { setCommonToken,setLocalStorageCommonToken } from '@/api/Token'
 import { console_log } from "@/utils/base.js"
 const state = {
-	common_token:''
+	common_token:'',
+	default_footer_choose:'shouye'
   // introduction: '',
   
 }
 
 const mutations = {
-  COMMON_TOKEN: (state, common_token) => {
-    state.common_token = common_token
-  },
-
+	COMMON_TOKEN: (state, common_token) => {
+		state.common_token = common_token
+	},
+	DEFAULT_FOOTER_CHOOSE: (state, item) => {
+		state.default_footer_choose = item
+	},
 }
 
 const actions = {
@@ -34,7 +37,10 @@ const actions = {
 			})
 		})
 	},
-
+	footerClick({ commit },item){
+		console_log(item)
+		commit('DEFAULT_FOOTER_CHOOSE', item)
+	}
 }
 
 export default {
