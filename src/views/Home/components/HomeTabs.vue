@@ -42,12 +42,12 @@ export default {
 				},	
 				{
 					desc:'口碑评价',
-					path:'/dwonload',
+					path:'/comment-list',
 					src:require('../../../assets/img/m-home-icon-4.png')
 				},
 				{
 					desc:'普通课程',
-					path:'/dwonload',
+					path:'/comment-list',
 					src:require('../../../assets/img/m-home-icon-5.png')
 				},
 				{

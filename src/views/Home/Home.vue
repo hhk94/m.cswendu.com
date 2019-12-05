@@ -345,7 +345,7 @@ export default {
 				})
 			})
 		},
-		//获取热门老师
+		//获取评论
 		getComment(){
 			let data ={
 				user_token:store.getters.common_token,
@@ -359,10 +359,10 @@ export default {
 					resolve(response)
 					console_log(response)
 					if(response.state==0){
-						this.$message.error('getQuestionList接口错误');
+						this.$message.error('getComment接口错误');
 					}else if(response.state==1){
 						response.content.length==0?
-						this.$message.error('getQuestionList数据为空'):
+						this.$message.error('getComment数据为空'):
 						this.commentList = response.content
 					}
 					}).catch(error => {

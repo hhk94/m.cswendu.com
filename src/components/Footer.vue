@@ -21,8 +21,8 @@
 				
 			</div>
 			<div
-			@click="itemClick('/zixun')"
-			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/zixun'}">
+			@click="itemClick('/news-list')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/news-list'}">
 				<i class="iconfont icon-zixundianji"></i>
 				<p>资讯</p>
 			</div>

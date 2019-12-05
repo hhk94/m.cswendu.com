@@ -12,6 +12,7 @@
 - 7.api统一封装，管理axios请求
 - 8.采用better-scroll 处理上拉刷新、下拉加载、全局滚动
 - 9.路由守卫监控跳转路径，修改footer-tabs导航
+- 10.上拉提示组件封装
 ## Project setup
 ```
 npm install
