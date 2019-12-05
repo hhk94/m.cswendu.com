@@ -37,7 +37,7 @@ export default {
 				},
 				{
 					desc:'考研问答',
-					path:'/dwonload',
+					path:'/ask-list',
 					src:require('../../../assets/img/m-home-icon-3.png')
 				},	
 				{

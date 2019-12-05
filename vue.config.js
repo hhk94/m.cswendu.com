@@ -15,7 +15,7 @@ module.exports = {
     // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
     proxy: {
       '/':{
-          target: 'http://47.111.168.64/cswd/public/index.php/api/',
+          target: 'http://47.111.168.64:80/cswd/public/index.php/api/',
           changeOrigin: true,
           pathRewrite:{
               '^/':'/'

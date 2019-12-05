@@ -57,6 +57,8 @@ service.interceptors.request.use(
 	if(config.isLoading != false){
 		showFullScreenLoading();
 	}
+	// config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+	
 	// let page_url = window.location.href;
 	// let data ={
 	// 	"app_class": "pc",

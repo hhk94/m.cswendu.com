@@ -4,7 +4,8 @@ export function setCommonToken(data) {
   return request({
     url: '/app/get_app_token',
     method: 'post',
-    data
+    data,
+	// mode: "cors", 
   })
 }
 

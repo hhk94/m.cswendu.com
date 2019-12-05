@@ -33,10 +33,17 @@ export default new Router({
 		meta:{
 		},  
 	},
-	{/*新闻列表*/
+	{/*评论列表*/
 		path: "/comment-list",
 		name: "CommentList",
 		component:() => import( './views/CommentList/CommentList.vue'),
+		meta:{
+		},  
+	},
+	{/*问答列表*/
+		path: "/ask-list",
+		name: "AskList",
+		component:() => import( './views/AskList/AskList.vue'),
 		meta:{
 		},  
 	},

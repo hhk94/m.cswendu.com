@@ -1,27 +1,28 @@
 <template>
-	<div class="comment-body">
+	<div class="ask-body">
 		<component
 		:is="headerName" 
 		v-show="showAbs"
 		:style="opacityStyle"></component>
-		<div class="comment" ref="wrapper">
+		<div class="ask" ref="wrapper">
 			<div>
-				<div class="comment-top"></div>
-				<div class="comment-center">
+				<div class="ask-top"></div>
+				<div class="ask-center">
 					<div 
-					v-for="item of commentList"
-					:key="item.course_comment_id"
+					v-for="item of questionList"
+					:key="item.course_ask_id"
 					class="list-item">
 						
-						<div class="comment-center-body">
-							<span class="comment-slog">口碑</span>
-							<span class="comment-name">{{item.user_name}}：</span>
-							<span class="summary">{{item.comment}}</span>
+						<div class="ask-center-body">
+							<span class="ask-slog">问答</span>
+							<span class="ask-name">{{item.ask_title}}</span>
+							
 						</div>
-						<h2>报名课程：{{item.course_name}}</h2>
+						<div class="summary" v-html="item.ask_description"></div>
+						<!-- <h2>{{item.tag_name}}</h2> -->
 						<div class="last">
-							<h2>校区：{{item.campus_name}}</h2>
-							<h2><i class="fa fa-clock-o"></i>{{item.create_time}}</h2>
+							<h2>提问人：{{item.ask_user_name}}</h2>
+							<h2 class="tag">{{item.tag_name}}</h2>
 						</div>
 						
 						
@@ -46,7 +47,7 @@ import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
-import {getComment } from '@/api/Base'
+import {getQuestionList } from '@/api/Base'
 export default {
 	name:"HomeCourse",
 	components:{
@@ -56,7 +57,7 @@ export default {
 	},
 	data (){
 		return {
-			commentList:[],
+			questionList:[],
 			scroll:null,
 			//导航监听显示
 			showAbs:true,
@@ -78,7 +79,7 @@ export default {
 	methods:{
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
-			this.getComment()
+			this.getQuestionList()
 			this.Scroll()
 		},
 		Scroll(){
@@ -110,7 +111,7 @@ export default {
 				console_log('pullingUp')
 				
 				if(!this.footer_bottom){
-					this.getComment()
+					this.getQuestionList()
 					this.scroll.finishPullUp();
 					
 				}else{
@@ -121,23 +122,23 @@ export default {
 			})
 		},
 		//获取评论
-		getComment(){
+		getQuestionList(){
 			let data ={
 				user_token:store.getters.common_token,
 				app_class:'mobile',
-				course_comment_id:'all',
+				ask_question_id: "all",
 				page:this.page,
 				limit:this.limit
 			}
 			new Promise((resolve, reject) => {
-				getComment(data).then(response => {
+				getQuestionList(data).then(response => {
 					resolve(response)
 					console_log(response)
 					if(response.state==0){
-						this.$message.error('getComment接口错误');
+						this.$message.error('getQuestionList接口错误');
 					}else if(response.state==1){
 						const _list = response.content
-						this.commentList  = [...this.commentList , ..._list];
+						this.questionList  = [...this.questionList , ..._list];
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll
 						})
@@ -160,21 +161,21 @@ export default {
 </script>
 
 <style scoped lang="less">
-.comment{
+.ask{
 	height: 100%;
 	overflow: hidden;
 	width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
-	.comment-top{
+	.ask-top{
 		overflow: hidden;
 		width: 100%;
 		height: 0;
 		padding-bottom: 35.1%;
-		background: url('~@/assets/img/m-comment-bg.png') no-repeat center center /cover;
+		background: url('~@/assets/img/m-ask-bg.png') no-repeat center center /cover;
 	}
-	.comment-center{
+	.ask-center{
 		width: @design-center;
 		margin: 0.2rem auto 0 auto;
 		padding-bottom:0.5rem;
@@ -183,10 +184,12 @@ export default {
 			border-bottom: 1px solid #e6e3df;
 			padding-bottom: 0.2rem;
 			margin-bottom: 0.2rem;
-			.comment-center-body{
-				margin-bottom: 0.3rem;
-				.comment-slog{
-					display: inline-block;
+			.ask-center-body{
+				margin-bottom: 0.1rem;
+				overflow: hidden;
+				.ask-slog{
+					float: left;
+					// display: inline-block;
 					font-size: 0.2rem;
 					color: white;
 					height: 0.4rem;
@@ -195,15 +198,21 @@ export default {
 					padding: 0 0.1rem;
 					border-radius: 0.1rem;
 				}
-				.comment-name{
-					margin: 0 0.1rem;
+				.ask-name{
+					float: left;
+					width: 80%;
+					margin: 0.05rem 0.1rem;
 					font-size: 0.24rem;
 					color: #a3a3a3;
 				}
-				.summary{
-					text-indent: 0.2rem;
-					font-size: 0.24rem;
-					color: #525252;
+				
+			}
+			.summary{
+				
+				font-size: 0.24rem;
+				color: #898989;
+				p{
+					margin: 0.02rem 0;
 				}
 			}
 			h2{
@@ -215,6 +224,14 @@ export default {
 				margin-top: 0.1rem;
 				display: flex;
 				justify-content: space-between;
+				.tag{
+					background: @theme-color;
+					height: 0.3rem;
+					line-height: 0.3rem;
+					padding: 0 0.1rem;
+					border-radius: 0.06rem;
+					color: white;
+				}
 			}
 		}
 	}
