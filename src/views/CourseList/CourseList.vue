@@ -31,7 +31,7 @@
 							<a class="ask">在线资讯</a>
 						</div>
 					</div>
-					<div v-show="this.footer_bottom" class="bottom-notice">我是有底线的！~</div>
+					<bottom-notice :footer_bottom="footer_bottom"></bottom-notice>
 				</div>
 			</div>
 		</div>
@@ -43,6 +43,7 @@
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
 import HomeFooter from '@/components/Footer'
+import BottomNotice from '@/components/BottomNotice'
 import { getHomeBanner} from '@/api/Home'
 import {getCourseClass,getCourseList } from '@/api/Base'
 import HomeTopSwiper from '../Home/components/HomeTopSwiper'
@@ -54,7 +55,8 @@ export default {
 	components:{
 		DefaultHeader,
 		HomeTopSwiper,
-		HomeFooter
+		HomeFooter,
+		BottomNotice
 	},
 	data(){
 		return{
@@ -237,12 +239,7 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	
-	.bottom-notice{
-		text-align: center;
-		color: @theme-color;
-		font-size: 0.2rem;
-	}
+
 	.course-list{
 		width: @design-center;
 		margin: 0.3rem auto 0 auto;

@@ -19,8 +19,11 @@
 						</div>
 						<div class="hot-icon">HOT!</div>
 					</div>
+					<bottom-notice :footer_bottom="footer_bottom"></bottom-notice>
 				</div>
+				
 			</div>
+			
 		</div>
 		<home-footer :alreadyTop="alreadyTop"></home-footer>
 	</div>
@@ -31,6 +34,7 @@
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
 import HomeFooter from '@/components/Footer'
+import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
@@ -39,7 +43,8 @@ export default {
 	name:"HomeCourse",
 	components:{
 		BackHeader,
-		HomeFooter
+		HomeFooter,
+		BottomNotice
 	},
 	data (){
 		return {
@@ -53,7 +58,8 @@ export default {
 			},
 			headerName:'BackHeader',
 			//下拉显示文字
-			alreadyTop:true
+			alreadyTop:true,
+			footer_bottom:true
 		}
 	},
 	mounted() {
@@ -160,7 +166,7 @@ export default {
 	.hot-course-center{
 		width: @design-center;
 		margin: 0.2rem auto 0 auto;
-		padding-bottom:1rem;
+		padding-bottom:0.5rem;
 		.hot-item{
 			width: 100%;
 			overflow: hidden;
