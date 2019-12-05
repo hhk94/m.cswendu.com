@@ -76,11 +76,16 @@ export default {
 			// 新闻页面下拉加载
 			page:1,
 			limit:4,
+			//展示 news 底线
 			footer_bottom:false,
 			scroll:null,
+			//判断顶部展示顶线
 			alreadyTop:true
 			
 		}
+	},
+	created(){
+		console.log("cerate")
 	},
 	mounted() {
 		this.init()
@@ -99,6 +104,7 @@ export default {
 			this.getComment()
 			this.getAllNews()
 			this.Scroll()
+			
 		},
 		Scroll(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
@@ -157,7 +163,6 @@ export default {
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll
 						})
-						console_log(this.newsList)
 						if (_list.length < this.limit || this.page == 3) {
 							/* 所有数据加载完毕 */
 							this.footer_bottom = true

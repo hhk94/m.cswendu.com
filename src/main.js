@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from "./router"
+
 import 'styles/resset.css'//自定义清零样式 - own clear css
 import 'styles/border.css'//解决1像素边框 - deal with 1px border problem css
 import store from './store'
@@ -21,6 +22,7 @@ import fastClick from 'fastclick'
 fastClick.attach(document.body)
 // import { setCommonToken,setLocalStorageCommonToken } from '@/api/Token'
 //vuex
+import storeTotal from '@/store'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
@@ -33,6 +35,7 @@ Vue.use(YDUI);
 router.beforeEach((to, from, next) => {
 	console_log(to.path)
 	console_log('此时执行')
+	storeTotal.dispatch('Home/footerClick',to.path);	
 	//进入页面就获取公共token
 	
 	// let page_url = window.location.href;
@@ -52,14 +55,16 @@ router.beforeEach((to, from, next) => {
 	// 			reject(error)
 	// 	})
 	// })
-	
-	if (to.path === "/course"){
-		next({
-			path: '/course'
-		});
-	} else {
+	if (to.path){
 		next()
-	}
+	} 
+	// if (to.path === "/course"){
+	// 	next({
+	// 		path: '/course'
+	// 	});
+	// } else {
+	// 	next()
+	// }
 	
 });
 

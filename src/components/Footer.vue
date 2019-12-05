@@ -3,32 +3,32 @@
 		<div class="top-notice" v-show="this.alreadyTop">我已经到头啦！~</div>
 		<div class="footer">
 			<div 
-			@click="itemClick('shouye')" 
-			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='shouye'}">
+			@click="itemClick('/shouye')" 
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/shouye'}">
 				<i class="iconfont icon-shouye"></i>
 				<p>首页</p>
 			</div>
 			<div
-			@click="itemClick('kecheng')"
-			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='kecheng'}">
+			@click="itemClick('/course-list')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/course-list'}">
 				<i class="iconfont icon-kecheng"></i>
 				<p>课程</p>
 			</div>
 			<div
-			@click="itemClick('kefu')"
-			:class="{'footer-item':true,'footer-item-center':true,choose:this.$store.state.Home.default_footer_choose=='kefu'}">
+			@click="itemClick('/kefu')"
+			:class="{'footer-item':true,'footer-item-center':true,choose:this.$store.state.Home.default_footer_choose=='/kefu'}">
 				<i class="iconfont icon-kefu"></i>
 				
 			</div>
 			<div
-			@click="itemClick('zixun')"
-			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='zixun'}">
+			@click="itemClick('/zixun')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/zixun'}">
 				<i class="iconfont icon-zixundianji"></i>
 				<p>资讯</p>
 			</div>
 			<div 
-			@click="itemClick('about-wode')"
-			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='about-wode'}">
+			@click="itemClick('/about-wode')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/about-wode'}">
 				<i class="iconfont icon-wode"></i>
 				<p>关于我们</p>
 			</div>
@@ -48,8 +48,8 @@ export default {
 	},
 	methods:{
 		itemClick(item){
-			this.$store.dispatch('Home/footerClick',item);	
-			this.$router.push({path:item})
+			// this.$store.dispatch('Home/footerClick',item);	
+			this.$router.push({path:item}).catch(err => {err})
 		}
 	},
 	props:{

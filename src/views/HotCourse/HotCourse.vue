@@ -46,7 +46,7 @@ export default {
 			courseList:[],
 			scroll:null,
 			//导航监听显示
-			showAbs:false,
+			showAbs:true,
 			opacityStyle:{
 				opacity:1,
 				background:'transparent'
@@ -81,9 +81,9 @@ export default {
 					opacity = opacity>1?1:opacity
 					this.opacityStyle = {opacity:opacity,background: "#7abff7"}
 					// console.log(this.opacityStyle)
-					this.showAbs = true
+					// this.showAbs = true
 				}else{
-					this.showAbs = false
+					// this.showAbs = false
 				}
 			})
 		},

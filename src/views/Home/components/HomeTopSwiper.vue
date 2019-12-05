@@ -1,7 +1,7 @@
 <template>
 	<div class="swiper-body">
 		<div class="header">
-			<div class="m-logo">
+			<div class="m-logo" @click="back()">
 				<img src="@/assets/img/m-logo.png" alt="">
 			</div>
 			<div class="m-phone">
@@ -48,6 +48,11 @@ export default {
 	},
 	props:{
 		bannerList:Array
+	},
+	methods:{
+		back(){
+			this.$router.go(-1);
+		}
 	}
 }
 </script>

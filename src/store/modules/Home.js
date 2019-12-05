@@ -2,9 +2,10 @@
 // import { getToken, setToken, removeToken } from '@/utils/auth'
 import { setCommonToken,setLocalStorageCommonToken } from '@/api/Token'
 import { console_log } from "@/utils/base.js"
+const default_footer_choose = localStorage.getItem('DEFAULT_FOOTER_CHOOSE')?localStorage.getItem('DEFAULT_FOOTER_CHOOSE'):'shouye'
 const state = {
 	common_token:'',
-	default_footer_choose:'shouye'
+	default_footer_choose:default_footer_choose
   // introduction: '',
   
 }
@@ -40,6 +41,7 @@ const actions = {
 	footerClick({ commit },item){
 		console_log(item)
 		commit('DEFAULT_FOOTER_CHOOSE', item)
+		localStorage.setItem('DEFAULT_FOOTER_CHOOSE',item)
 	}
 }
 

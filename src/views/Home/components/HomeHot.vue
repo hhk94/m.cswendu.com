@@ -104,7 +104,8 @@ export default {
 				color: @tab-color;
 				&::after{
 					position: absolute;
-					left: 16px;
+					left:50%;
+					transform: translateX(-50%);
 					bottom: -10px;
 					content: "";
 					display: block;
