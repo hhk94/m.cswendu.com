@@ -128,6 +128,7 @@ export default {
 					font-size: @sec-title;
 					color: @sec-color;
 					margin: 0.1rem 0 0.15rem 0;
+					line-height: 0.3rem;
 				}
 			}
 		}

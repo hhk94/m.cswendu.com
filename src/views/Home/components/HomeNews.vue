@@ -174,6 +174,7 @@ export default {
 				h1{
 					font-size: @tab-size;
 					color: @tab-color;
+					line-height: @sec-line-height;
 					.word-two-line;
 				}
 				div{

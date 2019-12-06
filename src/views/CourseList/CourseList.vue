@@ -112,7 +112,8 @@ export default {
 				},
 				scrollX: false,
 				scrollY: true,
-				useTransition:false
+				useTransition:false,
+				click: true
 			})
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
@@ -213,7 +214,7 @@ export default {
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll
 						})
-						if (_list.length < this.limit) {
+						if (_list.length < this.limit||this.limit*this.page>=response.paging.total) {
 							/* 所有数据加载完毕 */
 							this.footer_bottom = true
 							return;
@@ -288,7 +289,7 @@ export default {
 					width: 40.8%;
 					height: 0;
 					padding-bottom: 23.8%;
-					background: red;
+					// background: red;
 					border-radius: 0.1rem;
 					overflow: hidden;
 					margin: 2%;
@@ -300,9 +301,9 @@ export default {
 					float: left;
 					width: calc(~" 100% - 40.8% - 4%" );
 					height: 0;
-					padding: 0 0.2rem 23.8% 0.2rem;
+					padding: 0 0.2rem 19.8% 0.2rem;
 					// background: red;
-					margin: 2% 0;
+					margin: 4% 0;
 					h1{
 						font-size: 0.22em;
 						color: #525252;

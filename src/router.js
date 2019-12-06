@@ -19,6 +19,13 @@ export default new Router({
 		meta:{
 		},  
     },
+	{/*热门课程列表*/
+		path: "/hot-course",
+		name: "HotCourse",
+		component: () => import( './views/HotCourse/HotCourse'),
+		meta:{
+		},  
+	} ,
 	{/*课程列表*/
 		path: "/course-list",
 		name: "CourseList",
@@ -47,13 +54,14 @@ export default new Router({
 		meta:{
 		},  
 	},
-	{/*热门课程列表*/
-		path: "/hot-course",
-		name: "HotCourse",
-		component: () => import( './views/HotCourse/HotCourse'),
+	{/*问答列表*/
+		path: "/teacher-list",
+		name: "TeacherList",
+		component:() => import( './views/TeacherList/TeacherList.vue'),
 		meta:{
 		},  
-	} 
+	},
+	
   ]
 });
 

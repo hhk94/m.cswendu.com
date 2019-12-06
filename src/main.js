@@ -20,7 +20,7 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 //处理点击延迟 - fastclick
 import fastClick from 'fastclick'
 fastClick.attach(document.body)
-// import { setCommonToken,setLocalStorageCommonToken } from '@/api/Token'
+
 //vuex
 import storeTotal from '@/store'
 import Vuex from 'vuex'

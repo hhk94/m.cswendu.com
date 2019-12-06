@@ -76,7 +76,8 @@ export default {
 				probeType:2,
 				scrollX: false,
 				scrollY: true,
-				useTransition:false
+				useTransition:false,
+				click: true
 			})
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y

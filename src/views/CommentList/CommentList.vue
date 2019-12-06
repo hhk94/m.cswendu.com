@@ -89,7 +89,8 @@ export default {
 				},
 				scrollX: false,
 				scrollY: true,
-				useTransition:false
+				useTransition:false,
+				click: true
 			})
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
@@ -141,7 +142,7 @@ export default {
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll
 						})
-						if (_list.length < this.limit ) {
+						if (_list.length < this.limit ||this.limit*this.page>=response.paging.total) {
 							/* 所有数据加载完毕 */
 							this.footer_bottom = true
 							return;
@@ -204,6 +205,7 @@ export default {
 					text-indent: 0.2rem;
 					font-size: 0.24rem;
 					color: #525252;
+					line-height: 0.4rem;
 				}
 			}
 			h2{

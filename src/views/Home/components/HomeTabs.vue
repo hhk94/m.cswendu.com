@@ -47,7 +47,7 @@ export default {
 				},
 				{
 					desc:'普通课程',
-					path:'/comment-list',
+					path:'/course-list',
 					src:require('../../../assets/img/m-home-icon-5.png')
 				},
 				{
@@ -57,7 +57,7 @@ export default {
 				},
 				{
 					desc:'文都名师',
-					path:'/dwonload',
+					path:'/teacher-list',
 					src:require('../../../assets/img/m-home-icon-7.png')
 				},
 				{

@@ -57,24 +57,9 @@ service.interceptors.request.use(
 	if(config.isLoading != false){
 		showFullScreenLoading();
 	}
-	// config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
 	
-	// let page_url = window.location.href;
-	// let data ={
-	// 	"app_class": "pc",
-	// 	"url": page_url
-	// }
-	//获取commonToken
-	// new Promise((resolve, reject) => {
-	// 	getCommonToken(data).then(response => {
-	// 		resolve()
-	// 		console_log(response)
-	// 		setLocalStorageCommonToken(response.content.user_token)
-	// 		console_log('token设置完成')
-	// 		}).catch(error => {
-	// 			reject(error)
-	// 	})
-	// })
+	// config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+
     // if (store.getters.token) {
     //   // let each request carry token
     //   // ['X-Token'] is a custom headers key

@@ -93,11 +93,11 @@ export default {
 						font-weight: bold;
 						span{
 							float: right;
-							height: 0.22rem;
-							line-height: 0.22rem;
+							height: 0.3rem;
+							line-height: 0.3rem;
 							color: white;
 							font-size: 0.16rem;
-							padding: 0 0.02rem;
+							padding: 0 0.06rem;
 							background: @theme-color;
 							font-weight: normal;
 						}
@@ -109,6 +109,7 @@ export default {
 						margin-top: 0.15rem;
 						font-size: 0.16rem;
 						color: #666;
+						line-height:@sec-line-height;
 					}
 				}
 			}

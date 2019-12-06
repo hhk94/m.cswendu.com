@@ -27,6 +27,7 @@
 </template>
 
 <script>
+// import qs from 'qs'
 import BScroll from 'better-scroll'
 import HomeTopSwiper from './components/HomeTopSwiper'
 import HomeTabs from './components/HomeTabs'
@@ -112,6 +113,7 @@ export default {
 				pullUpLoad: {
 					threshold: -10
 				},
+				click: true,
 				scrollX: false,
 				scrollY: true,
 				useTransition:false
@@ -151,6 +153,7 @@ export default {
 				page:this.page,
 				limit:this.limit
 			}
+			// qs.stringify(data)
 			new Promise((resolve, reject) => {
 				getNewsList(data).then(response => {
 					resolve(response)

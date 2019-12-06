@@ -66,6 +66,7 @@ export default {
 			p{
 				font-size: 0.2rem;
 				color: @tab-color;
+				line-height: @sec-line-height;
 				span{
 					color: @theme-color;
 				}
@@ -73,6 +74,7 @@ export default {
 			.sec-title{
 				font-size: 0.16rem;
 				color: @sec-color;
+				line-height: @sec-line-height;
 			}
 			h1{
 				margin-top: 0.4rem;;

@@ -2,6 +2,7 @@
 // import { getToken, setToken, removeToken } from '@/utils/auth'
 import { setCommonToken,setLocalStorageCommonToken } from '@/api/Token'
 import { console_log } from "@/utils/base.js"
+// import qs from 'qs'
 const default_footer_choose = localStorage.getItem('DEFAULT_FOOTER_CHOOSE')?localStorage.getItem('DEFAULT_FOOTER_CHOOSE'):'shouye'
 const state = {
 	common_token:'',
@@ -27,6 +28,8 @@ const actions = {
 			"app_class": "pc",
 			"url": page_url
 		}
+		// data = qs.stringify(data)
+		// console.log(data)
 		return new Promise((resolve, reject) => {
 			setCommonToken(data).then(response => {
 				resolve(response)
