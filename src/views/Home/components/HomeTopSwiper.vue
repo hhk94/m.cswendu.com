@@ -10,12 +10,7 @@
 		</div>
 		<div class="swiper-center">
 			<swiper :options="swiperOption">
-				<swiper-slide>
-					<a href="">
-						<img src="../../../../public/img/detail-winter-vacation.png" alt="">
-					</a>
-					
-				</swiper-slide>
+				
 				<swiper-slide 
 				v-for="(item,index) of bannerList"
 				:key="index"
@@ -42,7 +37,12 @@ export default {
 				pagination: {
 					el: '.swiper-pagination',
 					dynamicBullets: true
-				}
+				},
+				loop: true,
+				autoplay: {
+					delay: 2500,
+					disableOnInteraction: false
+				},
 			}
 		}
 	},
@@ -87,11 +87,13 @@ export default {
 	.swiper-center{
 		width: @design-center;
 		margin: 0.13rem auto 0 auto;
-		background:red;
-		padding-bottom: 51%;
+		// background:red;
+		padding-bottom: 47%;
 		border-radius: 0.3rem;
 		overflow: hidden;
+		box-shadow: 0 0 0.05rem 0.05rem @theme-color;
 		height: 0;
+		
 	}
 	h1{
 		color: red;

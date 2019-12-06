@@ -46,19 +46,20 @@ export default {
 					src:require('../../../assets/img/m-home-icon-4.png')
 				},
 				{
-					desc:'普通课程',
+					desc:'考研课程',
 					path:'/course-list',
 					src:require('../../../assets/img/m-home-icon-5.png')
 				},
-				{
-					desc:'考研常识',
-					path:'/dwonload',
-					src:require('../../../assets/img/m-home-icon-6.png')
-				},
+				
 				{
 					desc:'文都名师',
 					path:'/teacher-list',
 					src:require('../../../assets/img/m-home-icon-7.png')
+				},
+				{
+					desc:'校区地址',
+					path:'/campus-list',
+					src:require('../../../assets/img/m-home-icon-9.png')
 				},
 				{
 					desc:'关于我们',

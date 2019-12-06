@@ -33,6 +33,13 @@ export default new Router({
 		meta:{
 		},  
 	},
+	{/*校区地址*/
+		path: "/campus-list",
+		name: "CampusList",
+		component:() => import( './views/CampusList/CampusList.vue'),
+		meta:{
+		},  
+	},
 	{/*课程列表*/
 		path: "/course-list",
 		name: "CourseList",

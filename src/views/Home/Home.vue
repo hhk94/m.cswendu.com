@@ -6,7 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="home-index" ref="wrapper">
 			<div>
-				<home-top-swiper :bannerList="bannerList" ></home-top-swiper>
+				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper"></home-top-swiper>
 				<home-tabs></home-tabs>
 				<home-hot :newsList="newsList" :questionList="questionList"></home-hot>
 				<home-course 
@@ -58,6 +58,8 @@ export default {
 	},
 	data (){
 		return {
+			//解决swiper-loop失效
+			hasSwiper:false,
 			bannerList:[],
 			newsList:[],
 			questionList:[],
@@ -182,7 +184,7 @@ export default {
 		//获取banner
 		getBanner(){
 			let data ={
-				key:'home_slider',
+				key:'m_home_slider',
 				user_token:store.getters.common_token,
 			}
 			new Promise((resolve, reject) => {
@@ -195,6 +197,11 @@ export default {
 						response.content.length==0?
 						this.$message.error('getHomeBanner数据为空'):
 						this.bannerList = response.content
+						if(this.bannerList.length!=0){
+							this.hasSwiper = true
+						}else{
+							this.hasSwiper = false
+						}
 					}
 					}).catch(error => {
 						reject(error)

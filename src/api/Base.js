@@ -76,3 +76,23 @@ export function getTeacherList(data) {
 		data
 	})
 }
+
+//获取校区分类
+export function getCampusClass(data) {
+	data = qs.stringify(data)
+	return request({
+		url: '/app/list_campus_class',
+		method: 'post',
+		data
+	})
+}
+
+//获取校区列表
+export function getCampusList(data) {
+	data = qs.stringify(data)
+	return request({
+		url: '/app/list_campus',
+		method: 'post',
+		data
+	})
+}
