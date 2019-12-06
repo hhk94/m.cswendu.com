@@ -13,7 +13,7 @@
 	</div> -->
 	<div class="header header1" >
 		<div class="header-body">
-			<div class="m-logo">
+			<div class="m-logo" @click="back()">
 				<img src="@/assets/img/m-logo.png" alt="">
 			</div>
 			<div class="m-phone">
@@ -49,7 +49,9 @@ export default {
 		
 	},
 	methods:{
-	
+		back(){
+			this.$router.go(-1);
+		}
 	}
 }
 </script>

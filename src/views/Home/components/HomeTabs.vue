@@ -62,7 +62,7 @@ export default {
 				},
 				{
 					desc:'关于我们',
-					path:'/dwonload',
+					path:'/about-us',
 					src:require('../../../assets/img/m-home-icon-8.png')
 				},
 			]

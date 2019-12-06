@@ -25,7 +25,14 @@ export default new Router({
 		component: () => import( './views/HotCourse/HotCourse'),
 		meta:{
 		},  
-	} ,
+	},
+	{/*关于我们*/
+		path: "/about-us",
+		name: "AboutUs",
+		component:() => import( './views/AboutUs/AboutUs.vue'),
+		meta:{
+		},  
+	},
 	{/*课程列表*/
 		path: "/course-list",
 		name: "CourseList",
@@ -54,7 +61,7 @@ export default new Router({
 		meta:{
 		},  
 	},
-	{/*问答列表*/
+	{/*教师列表*/
 		path: "/teacher-list",
 		name: "TeacherList",
 		component:() => import( './views/TeacherList/TeacherList.vue'),

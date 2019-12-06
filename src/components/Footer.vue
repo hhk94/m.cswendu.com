@@ -27,8 +27,8 @@
 				<p>资讯</p>
 			</div>
 			<div 
-			@click="itemClick('/about-wode')"
-			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/about-wode'}">
+			@click="itemClick('/about-us')"
+			:class="{'footer-item':true,choose:this.$store.state.Home.default_footer_choose=='/about-us'}">
 				<i class="iconfont icon-wode"></i>
 				<p>关于我们</p>
 			</div>
