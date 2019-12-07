@@ -47,7 +47,11 @@ export default {
 				pagination: {
 					el: '.swiper-pagination',
 					dynamicBullets: true
-				}
+				},
+				autoplay: {
+					delay: 2000,
+					disableOnInteraction: false
+				},
 			},
 			pages:[]
 		}

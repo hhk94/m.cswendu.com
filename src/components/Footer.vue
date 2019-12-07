@@ -73,7 +73,7 @@ export default {
 	width: 100%;
 	background-color: #ffffff;
 	box-shadow: 0 0 0.2rem 0.02rem @theme-color;
-	height: 0.8rem;
+	height: 0.9rem;
 	z-index: 100;
 	display: flex;
 	justify-content: space-between;
@@ -87,7 +87,7 @@ export default {
 			text-align: center;
 		}
 		p{
-			padding-top: 0.02rem;
+			padding-top: 0.1rem;
 			font-size: 0.16rem;
 			text-align: center;
 		}

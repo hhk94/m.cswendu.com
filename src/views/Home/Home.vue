@@ -6,14 +6,14 @@
 		:style="opacityStyle"></component>
 		<div class="home-index" ref="wrapper">
 			<div>
-				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper"></home-top-swiper>
+				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper_banner"></home-top-swiper>
 				<home-tabs></home-tabs>
 				<home-hot :newsList="newsList" :questionList="questionList"></home-hot>
 				<home-course 
 				:courseClassList="courseClassList"
 				@courseClassId="getCourseList"
 				:courseList='courseList'></home-course>
-				<home-teacher :hotTeacherList="hotTeacherList"></home-teacher>
+				<home-teacher :hotTeacherList="hotTeacherList" v-if="hasSwiper_teacher"></home-teacher>
 				<home-comment :commentList="commentList"></home-comment>
 				<home-news 
 				:tokenOver="tokenOver" 
@@ -59,7 +59,8 @@ export default {
 	data (){
 		return {
 			//解决swiper-loop失效
-			hasSwiper:false,
+			hasSwiper_banner:false,
+			hasSwiper_teacher:false,
 			bannerList:[],
 			newsList:[],
 			questionList:[],
@@ -198,9 +199,9 @@ export default {
 						this.$message.error('getHomeBanner数据为空'):
 						this.bannerList = response.content
 						if(this.bannerList.length!=0){
-							this.hasSwiper = true
+							this.hasSwiper_banner = true
 						}else{
-							this.hasSwiper = false
+							this.hasSwiper_banner = false
 						}
 					}
 					}).catch(error => {
@@ -349,6 +350,11 @@ export default {
 						response.content.length==0?
 						this.$message.error('getQuestionList数据为空'):
 						this.hotTeacherList = response.content
+						if(this.hotTeacherList.length!=0){
+							this.hasSwiper_teacher = true
+						}else{
+							this.hasSwiper_teacher = false
+						}
 					}
 					}).catch(error => {
 						reject(error)
