@@ -13,7 +13,7 @@
 						<div class="img-box"><img src="@/assets/img/m-news-detail-1.png" alt=""></div>
 						<div class="word">
 							<h1>{{this.news_info.author}}</h1>
-							<h2>2019-10-31</h2>
+							<h2>{{this.getTime(this.news_info.create_time)}}</h2>
 						</div>
 					</div>
 					<div class="summary" v-html="this.news_info.content"></div>
@@ -56,7 +56,7 @@ import BackHeader from '@/components/BackHeader'
 import HomeFooter from '@/components/Footer'
 import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
-import { console_log } from "@/utils/base.js"
+import { console_log,getTime } from "@/utils/base.js"
 import store from '@/store'
 import {getNewsList} from '@/api/Base'
 import {getNewsDetail} from '@/api/NewsDetail'
@@ -126,6 +126,10 @@ export default {
 		// this.classNewsList = []
 	},
 	methods:{
+		getTime(time){
+			return getTime(time)
+			
+		},
 		goToDetail(id,class_id_array){
 			
 			console_log("id")
