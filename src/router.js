@@ -54,6 +54,13 @@ export default new Router({
 		meta:{
 		},  
 	},
+	{/*新闻详情*/
+		path: "/news-detail",
+		name: "NewsDetail",
+		component:() => import( './views/NewsDetail/NewsDetail.vue'),
+		meta:{
+		},  
+	},
 	{/*评论列表*/
 		path: "/comment-list",
 		name: "CommentList",

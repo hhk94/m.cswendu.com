@@ -11,7 +11,8 @@
 				<div class="news-list">
 					
 					<div class="list">
-						<div 
+						<div
+						@click="goToDetail(item.news_info_id,item.news_class_id_array)"
 						v-for="item of allNewsList"
 						:key="item.news_info_id"
 						class="list-item">
@@ -73,6 +74,10 @@ export default {
 		
 	},
 	methods:{
+		goToDetail(id,class_id_array){
+			
+			this.$router.push({path:'/news-detail',query:{news_info_id:id,class_id_array:class_id_array}}).catch(err => {err})
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getBanner()

@@ -41,6 +41,7 @@ const actions = {
 			})
 		})
 	},
+	
 	footerClick({ commit },item){
 		console_log(item)
 		commit('DEFAULT_FOOTER_CHOOSE', item)
