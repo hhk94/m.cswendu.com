@@ -25,7 +25,7 @@
 						class="list-item">
 							<h1 class="title">
 								{{item.campus_name}}
-								<span>查看地图</span>
+								<span @click="lookMap(item.campus_address,item.campus_name)">查看地图</span>
 							</h1>
 							<p>{{item.campus_address}}</p>
 							<div class="tel" @click="tel('tel://15367826050')"><i class="fa fa-phone-square"></i>湖南二十四小时在线电话：153-6782-6050(点击拨打)</div>
@@ -84,6 +84,9 @@ export default {
 		this.init()
 	},
 	methods:{
+		lookMap(address,name){
+			this.$router.push({path:'/campus-detail',query:{address:address,name:name}}).catch(err => {err})
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getCampusClass()

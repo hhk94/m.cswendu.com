@@ -31,6 +31,12 @@ import 'vue-ydui/dist/ydui.rem.css';
 Vue.use(YDUI);
 
 
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: '0DLYDIjeyUdprzjIGOwnAm2xmKjZdu7z'
+})
+
 //全局路由守卫 - 进入任何页面都获取一次token - 后端要求
 router.beforeEach((to, from, next) => {
 	console_log(to.path)

@@ -40,6 +40,13 @@ export default new Router({
 		meta:{
 		},  
 	},
+	{/*校区地址*/
+		path: "/campus-detail",
+		name: "CampusDetail",
+		component:() => import( './views/CampusDetail/CampusDetail.vue'),
+		meta:{
+		},  
+	},
 	{/*课程列表*/
 		path: "/course-list",
 		name: "CourseList",
@@ -72,6 +79,13 @@ export default new Router({
 		path: "/ask-list",
 		name: "AskList",
 		component:() => import( './views/AskList/AskList.vue'),
+		meta:{
+		},  
+	},
+	{/*问答列表*/
+		path: "/ask-detail",
+		name: "AskDetail",
+		component:() => import( './views/AskDetail/AskDetail.vue'),
 		meta:{
 		},  
 	},

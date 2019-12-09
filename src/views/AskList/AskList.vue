@@ -9,8 +9,9 @@
 				<div class="ask-top"></div>
 				<div class="ask-center">
 					<div 
+					@click="goToDetail(item.ask_question_id)"
 					v-for="item of questionList"
-					:key="item.course_ask_id"
+					:key="item.ask_question_id"
 					class="list-item">
 						
 						<div class="ask-center-body">
@@ -77,6 +78,10 @@ export default {
 		this.init()
 	},
 	methods:{
+		goToDetail(id){
+			console_log(id)
+			this.$router.push({path:'/ask-detail',query:{ask_question_id:id}}).catch(err => {err})
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getQuestionList()
@@ -96,12 +101,12 @@ export default {
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
-				console.log(this.alreadyTop)
+				console_log(this.alreadyTop)
 				if(top>60){
 					let opacity = 1
 					opacity = opacity>1?1:opacity
 					this.opacityStyle = {opacity:opacity,background: "#7abff7"}
-					// console.log(this.opacityStyle)
+					// console_log(this.opacityStyle)
 					// this.showAbs = true
 				}else{
 					// this.showAbs = false

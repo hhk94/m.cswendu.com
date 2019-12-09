@@ -4,6 +4,11 @@ function resolve(dir) {
 }
 module.exports = {
   // 基本路径
+	configureWebpack: {
+	externals: {
+	"BMap": "BMap"
+	}
+	},
 
   outputDir: 'dist',
 
