@@ -96,7 +96,13 @@ export default new Router({
 		meta:{
 		},  
 	},
-	
+	{/*教师列表*/
+		path: "/teacher-detail",
+		name: "TeacherDetail",
+		component:() => import( './views/TeacherDetail/TeacherDetail.vue'),
+		meta:{
+		},  
+	},
   ]
 });
 

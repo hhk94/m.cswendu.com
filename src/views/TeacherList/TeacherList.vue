@@ -22,6 +22,7 @@
 					</div>
 					<div class="list">
 						<div 
+						@click="goToDetail(item.teacher_id)"
 						v-for="item of teacherList"
 						:key="item.teacher_id"
 						
@@ -83,6 +84,9 @@ export default {
 		this.init()
 	},
 	methods:{
+		goToDetail(id){
+			this.$router.push({path:'/teacher-detail',query:{teacher_id:id}}).catch(err => {err})
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getTeacherClass()
