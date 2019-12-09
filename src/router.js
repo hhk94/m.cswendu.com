@@ -82,7 +82,7 @@ export default new Router({
 		meta:{
 		},  
 	},
-	{/*问答列表*/
+	{/*问答详情*/
 		path: "/ask-detail",
 		name: "AskDetail",
 		component:() => import( './views/AskDetail/AskDetail.vue'),
@@ -96,10 +96,17 @@ export default new Router({
 		meta:{
 		},  
 	},
-	{/*教师列表*/
+	{/*教师详情*/
 		path: "/teacher-detail",
 		name: "TeacherDetail",
 		component:() => import( './views/TeacherDetail/TeacherDetail.vue'),
+		meta:{
+		},  
+	},
+	{/*教师详情*/
+		path: "/spacial-1",
+		name: "Spacial-1",
+		component:() => import( './views/Spacial/Spacial-1.vue'),
 		meta:{
 		},  
 	},

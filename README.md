@@ -16,6 +16,9 @@
 - 11.fastclick处理点击事件
 - 12.vue-baidu-map 实现地图功能
 
+#### 注意
+- 1.better-scroll click属性在页面测试中会导致click事件触发2次，但是禁止后移动端不触发，仍然要打开为true
+- 
 #### 页面参数定义
 
 ##### home页面 

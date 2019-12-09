@@ -9,6 +9,7 @@
 				<div class="hot-course-top"></div>
 				<div class="hot-course-center">
 					<div class="hot-item"
+					@click="goToSpacial(item.course_name)"
 					v-for="item of courseList"
 					:key="item.course_id">
 						<div class="img-box"><img :src="item.course_cover" alt=""></div>
@@ -93,6 +94,11 @@ export default {
 					// this.showAbs = false
 				}
 			})
+		},
+		goToSpacial(course_name){
+			if(course_name =='2021全年集训营'){
+				this.$router.push({path:'/spacial-1',query:{}}).catch(err => {err})
+			}
 		},
 		//获取新闻分类
 		getCourseClass(){

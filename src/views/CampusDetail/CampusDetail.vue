@@ -101,7 +101,7 @@ export default {
 				scrollX: false,
 				scrollY: true,
 				useTransition:false,
-				click: false
+				click: true
 			})
 			
 			this.scroll.on('scroll',(pos)=>{
