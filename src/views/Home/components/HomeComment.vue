@@ -3,7 +3,7 @@
 		<div class="home-comment-center">
 			<h1 class="type-title">
 				口碑评价
-				<span class="more" @click="more()"><img src="@/assets/img/m-home-more.png" alt=""></span>
+				<span class="more" @click="goToList()"><img src="@/assets/img/m-home-more.png" alt=""></span>
 			</h1>
 			<div class="list-center">
 				<div class="list-item"
@@ -40,7 +40,8 @@ export default {
 		
 	},
 	methods:{
-		more(){
+		
+		goToList(){
 			// this.$store.dispatch('Home/footerClick',item);	
 			this.$router.push({path:'/comment-list'}).catch(err => {err})
 		}

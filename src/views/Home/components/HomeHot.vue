@@ -13,7 +13,7 @@
 						<p class="center-list"
 						v-for="(item2) of item"
 						:key="item2.news_info_id"
-						@click="newsRouter(item2.news_info_id)"
+						@click="newsRouter(item2.news_info_id,item2.news_class_id_array)"
 						>{{item2.title}}</p>
 					</swiper-slide>
 					
@@ -78,11 +78,13 @@ export default {
 		tabChange(item){
 			this.isActive = item
 		},
-		newsRouter(news_info_id){
-			this.$router.push({path:"/news-list",query:{news_info_id:news_info_id}})
+		newsRouter(news_info_id,class_id_array){
+			
+			this.$router.push({path:'/news-detail',query:{news_info_id:news_info_id,class_id_array:class_id_array}}).catch(err => {err})
 		},
 		questionRouter(ask_question_id){
-			this.$router.push({path:"/question-list",query:{ask_question_id:ask_question_id}})
+			
+			this.$router.push({path:'/ask-detail',query:{ask_question_id:ask_question_id}}).catch(err => {err})
 		},
 	}
 }

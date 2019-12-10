@@ -1,17 +1,19 @@
 <template>
 	<div class="home-teacher">
 		<div class="home-teacher-center">
-			<h1 class="type-title">
+			<h1 class="type-title" >
 				文都名师
-				<span class="more"><img src="@/assets/img/m-home-more.png" alt=""></span>
+				<span class="more"
+				@click="goToList()"><img src="@/assets/img/m-home-more.png" alt=""></span>
 			</h1>
 		</div>
 		<div class="teacher-swiper">
-			<swiper :options="swiperOption">
-				<swiper-slide 
+			<swiper :options="swiperOption" ref="mySwiper">
+				<swiper-slide
+				:data_index="item.teacher_id"
 				v-for="item of hotTeacherList"
 				:key="item.teacher_id">
-					<div class="teacher-item">
+					<div class="teacher-item" >
 						<div class="item-img"><img :src="item.teacher_cover" alt=""></div>
 						<div class="word">
 							<h1>{{item.teacher_name}}
@@ -30,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
 	name:'HomeTeacher',
 	data() {
@@ -37,10 +40,6 @@ export default {
 			swiperOption: {
 				slidesPerView: 'auto',
 				spaceBetween: 30,
-				// pagination: {
-				// 	el: '.swiper-pagination',
-				// 	clickable: true
-				// }
 				loop:true,
 				autoplay: {
 					delay: 2000,
@@ -49,8 +48,28 @@ export default {
 			}
 		}
 	},
+	computed: {
+		swiper() {
+			return this.$refs.mySwiper.swiper;
+		}
+	},
 	props:{
 		hotTeacherList:Array
+	},
+	mounted() {
+		let _this = this;
+		this.swiper.on('tap', function () {
+			_this.goToDetail(this.clickedSlide.getAttribute('data_index'));//调用你自定义的方法
+		})
+	},
+	methods:{
+		goToList(){
+			this.$router.push({path:'/teacher-List'}).catch(err => {err})
+		},
+		goToDetail(id){
+			// console.log(id)
+			this.$router.push({path:'/teacher-detail',query:{teacher_id:id}}).catch(err => {err})
+		},
 	}
 }
 </script>

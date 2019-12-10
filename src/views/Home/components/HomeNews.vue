@@ -3,10 +3,12 @@
 		<div class="home-news-center">
 			<h1 class="type-title">
 				考研资讯
-				<span class="more"><img src="@/assets/img/m-home-more.png" alt=""></span>
+				<span class="more"
+				@click="goToList()"><img src="@/assets/img/m-home-more.png" alt=""></span>
 			</h1>
 			<div class="list-center">
 				<div class="list-item"
+				@click="goToDetail(item.news_info_id,item.news_class_id_array)"
 				v-for="item of allNewsList"
 				:key="item.news_info_id">
 					<div class="item-pic"><img :src="item.cover" alt=""></div>
@@ -89,38 +91,14 @@ export default {
 		}
 	},
 	methods:{
-		//获取新闻
-		// getNews(){
-		// 	let data ={
-		// 		user_token:store.getters.common_token,
-		// 		app_class:'mobile',
-		// 		page:this.page,
-		// 		limit:this.limit
-		// 	}
-		// 	new Promise((resolve, reject) => {
-		// 		getNewsList(data).then(response => {
-		// 			resolve(response)
-		// 			console_log(response)
-		// 			if(response.state==0){
-		// 				this.$message.error('getNews接口错误');
-		// 			}else if(response.state==1){
-		// 				const _list = response.content
-		// 				this.newsList = [...this.newsList, ..._list];
-		// 				console.log(this.newsList)
-		// 				if (_list.length < this.limit || this.page == 2) {
-		// 					/* 所有数据加载完毕 */
-		// 					this.$refs.infinitescrollDemo.$emit('ydui.infinitescroll.loadedDone');
-		// 					return;
-		// 				}
-		// 				/* 单次请求数据完毕 */
-		// 				this.$refs.infinitescrollDemo.$emit('ydui.infinitescroll.finishLoad');
-		// 				this.page++;	
-		// 			}
-		// 			}).catch(error => {
-		// 				reject(error)
-		// 		})
-		// 	})
-		// },
+		goToList(){
+			this.$router.push({path:'/news-List'}).catch(err => {err})
+		},
+		goToDetail(id,class_id_array){
+			
+			this.$router.push({path:'/news-detail',query:{news_info_id:id,class_id_array:class_id_array}}).catch(err => {err})
+		},
+		
 	}
 }
 </script>
