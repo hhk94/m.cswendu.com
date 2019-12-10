@@ -32,7 +32,7 @@ export default {
 				},
 				{
 					desc:'真题资料',
-					path:'/dwonload',
+					path:'/download-list',
 					src:require('../../../assets/img/m-home-icon-2.png')
 				},
 				{

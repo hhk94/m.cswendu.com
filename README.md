@@ -16,9 +16,7 @@
 - 11.fastclick处理点击事件
 - 12.vue-baidu-map 实现地图功能
 
-#### 注意
-- 1.better-scroll click属性在页面测试中会导致click事件触发2次，但是禁止后移动端不触发，仍然要打开为true
-- 
+
 #### 页面参数定义
 
 ##### home页面 
@@ -31,6 +29,12 @@
 - 6.showAbs/opacityStyle	fixed导航样式调整
 - 7.page/limit	用于上拉加载的组件计算分页
 - 8.scroll	用于调用better-scroll制作滚动
+
+#### 注意 - 2019-12-10
+
+- 1.better-scroll click属性在页面测试中会导致click事件触发2次，但是禁止后移动端不触发，仍然要打开为true
+- 2.download-detail页面细节有待完善
+
 ## Project setup
 ```
 npm install

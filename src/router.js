@@ -103,10 +103,24 @@ export default new Router({
 		meta:{
 		},  
 	},
-	{/*教师详情*/
+	{/*专题页1*/
 		path: "/spacial-1",
 		name: "Spacial-1",
 		component:() => import( './views/Spacial/Spacial-1.vue'),
+		meta:{
+		},  
+	},
+	{/*下载列表*/
+		path: "/download-list",
+		name: "DownloadList",
+		component:() => import( './views/DownloadList/DownloadList.vue'),
+		meta:{
+		},  
+	},
+	{/*下载列表*/
+		path: "/download-detail",
+		name: "DownloadDetail",
+		component:() => import( './views/DownloadDetail/DownloadDetail.vue'),
 		meta:{
 		},  
 	},
