@@ -208,7 +208,8 @@ export default {
 				width: calc(~"100% - 0.92rem");
 				padding:0 0.3rem;
 				.word-title{
-					font-size: 0.24rem;
+					font-size: @tab-size;
+					line-height: 0.3rem;
 					color: #525252;
 					text-align: left;
 					.word-two-line;

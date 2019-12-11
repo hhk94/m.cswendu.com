@@ -112,7 +112,7 @@ export default {
 					width: calc(~"100% - 40%");
 					float: right;
 					h1{
-						font-size: 0.22rem;
+						font-size: @tab-size;
 						color: #ffa43f;
 						font-weight: bold;
 						span{
@@ -131,7 +131,7 @@ export default {
 						text-align: left;
 						padding-right: 0.3rem;
 						margin-top: 0.15rem;
-						font-size: 0.16rem;
+						font-size: @sec-title;
 						color: #666;
 						line-height:@sec-line-height;
 					}

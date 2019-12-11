@@ -30,10 +30,16 @@
 - 7.page/limit	用于上拉加载的组件计算分页
 - 8.scroll	用于调用better-scroll制作滚动
 
-#### 注意 - 2019-12-10
+#### 2019-12-10
 
 - 1.better-scroll click属性在页面测试中会导致click事件触发2次，但是禁止后移动端不触发，仍然要打开为true
 - 2.download-detail页面细节有待完善
+
+#### 2019-12-10
+- 1.修复新闻页面同类class 循环 key 重复问题
+- 2.修复news-detail页面进入不滚动至头部问题
+- 3.course-list 暂时为根据class-name 跳转3个不同的spacial专题页面
+
 
 ## Project setup
 ```

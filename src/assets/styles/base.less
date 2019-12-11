@@ -1,14 +1,15 @@
 @icon-color:#333333;
 //统一主标题 颜色，尺寸
-@tab-color:#494949;
-@tab-size:0.2rem;
+@tab-color:#131212;
+@tab-size:0.26rem;
 //定义主题色
 @theme-color:#7abff7;
+@title:0.3rem;
 //统一设计中心宽度
 @design-center:91.8%;
 //统一副标题尺寸，颜色
-@sec-title:0.18rem;
-@sec-line-height:0.3rem;
+@sec-title:0.24rem;
+@sec-line-height:0.4rem;
 @sec-color:#999;
 // @sec-color:#767676;
 
@@ -33,7 +34,7 @@
 }
 .type-title(){
 	text-indent: 0.3rem;
-	font-size: 0.22rem;
+	font-size: @title;
 	color: @tab-color;
 	position: relative;
 	font-weight: bold;
@@ -49,7 +50,7 @@
 		height: 100%;
 		background: @theme-color;
 		left: 0.09rem;
-		top: -0.02rem;
+		top: 0;
 	}
 }
 img{

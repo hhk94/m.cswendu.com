@@ -25,7 +25,7 @@
 							
 							<div class="list">
 								<div
-								@click="goToDetail(item.news_info_id,item.news_class_id_array)"
+								@click.once="goToDetail(item.news_info_id,item.news_class_id_array)"
 								v-for="item of classNewsList"
 								:key="item.news_info_id"
 								class="list-item">
@@ -88,10 +88,15 @@ export default {
 			limit:4,
 			news_info:{},
 			news_info_id:'',
-			classNewsList:[]
+			classNewsList:[],
+			timer: '',
 		}
 	},
-	mounted(){
+	// mounted(){
+	// 	this.init()
+	// },
+	activated() {
+		console_log('aS')
 		this.init()
 	},
 	// beforeRouteEnter(to, from, next) {
@@ -100,51 +105,35 @@ export default {
 		
 	// 	// 通过 `vm` 访问fetchData，将query参数name，传递过去，进行逻辑处理
 	// 	vm.classNewsList = []
-	// 	console.log(vm.$route);//有值
-	// 	console.log(vm.$route.query.news_info_id)
+	// 	console_log(vm.$route);//有值
+	// 	console_log(vm.$route.query.news_info_id)
 	// 	// vm.fetchData(vm.$route.query.news_info_id);
 	// 	vm.init()
 	// 	});
 	
 	// },
 	watch:{
-		$route(){
+		$route(newVal, oldVal){
 			this.classNewsList = []
-			// console.log('$route')
-			// console.log(this.$route.query.news_info_id)
-			if(this.$route.path=="/news-detail"){
-				this.init()
+			console_log(oldVal); //oldVa 上一次url
+			console_log(newVal); //newVal 这一次的url
+			this.scroll.scrollTo(0,0,1000) 
+			if (newVal != oldVal) {
+				if(this.$route.path=="/news-detail"){
+					this.init()
+				}
 			}
+			// console_log('$route')
+			// console_log(this.$route.query.news_info_id)
+			
 			
 		}
 	},
-	activated(){
-		// this.init()
-		// console.log('activated')
-	},
+	
 	deactivated(){
 		// this.classNewsList = []
 	},
 	methods:{
-		getTime(time){
-			return getTime(time)
-			
-		},
-		goToDetail(id,class_id_array){
-			
-			console_log("id")
-			console_log(id)
-			console_log("this.news_info_id")
-			console_log(this.news_info_id)
-			if(id==this.news_info_id){
-				this.$dialog.toast({
-					mes: '为同一条资讯，请选择其他资讯查看',
-					timeout: 1500,
-					icon: 'error',
-				});
-			}
-			this.$router.push({path:'/news-detail',query:{news_info_id:id,class_id_array:class_id_array}}).catch(err => {err})
-		},
 		async init(){
 			if(!store.getters.common_token){
 				await this.$store.dispatch('Home/setCommonToken');
@@ -157,7 +146,10 @@ export default {
 			
 			if(news_info_id!=this.news_info_id){
 				this.getNewsDetail( news_info_id)
-				
+				// console_log("id")
+				// console_log(news_info_id)
+				// console_log("this.news_info_id")
+				// console_log(this.news_info_id)
 				
 			}
 			// console_log(class_id_array)
@@ -166,10 +158,57 @@ export default {
 			})
 			this.news_info_id = news_info_id
 			
-			
-			
 			this.Scroll()
+			this.updated()
 		},
+		updated () {
+			//解决better-scroll因为图片没有下载完导致的滚动条高度不够，无法浏览全部内容的问题。
+			//原因是better-scroll初始化是在dom加载后执行，此时图片没有下载完成，导致滚动条高度计算不准确。
+			//利用图片的complete属性进行判断，当所有图片下载完成后再对scroll重新计算。
+			let img = document.getElementsByTagName('img')
+			let count = 0
+			let length = img.length
+			console_log(img)
+			if(img){
+				if (length) {
+					let timer = setInterval(() => {
+						console_log(img[count])
+					if (count == length) {
+						// console_log('refresh')
+						this.scroll.refresh()
+						clearInterval(timer)
+					} else if (img[count]) {
+						if(img[count].complete){
+							count ++
+						}
+						
+					}
+					}, 100)
+				}
+			}
+			
+			
+		},
+		getTime(time){
+			return getTime(time)
+			
+		},
+		goToDetail(id,class_id_array){
+			console_log(id)
+			console_log(this.news_info_id)
+			
+			if(id==this.news_info_id){
+				this.$dialog.toast({
+					mes: '为同一条资讯，请选择其他资讯查看',
+					timeout: 1500,
+					icon: 'error',
+				});
+			}else{
+				this.$router.push({path:'/news-detail',query:{news_info_id:id,class_id_array:class_id_array}}).catch(err => {err})
+			}
+			
+		},
+		
 		Scroll(){
 			
 			this.scroll = new BScroll(this.$refs.wrapper,{
@@ -182,11 +221,11 @@ export default {
 				useTransition:false,
 				click: true
 			})
-			
+			// this.scroll.scrollTo(0,0,1000) 
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
-				// console_log(this.alreadyTop)
+				// console_log(top )
 				if(top>60){
 					// let opacity = 1
 					// opacity = opacity>1?1:opacity
@@ -218,7 +257,7 @@ export default {
 				app_class:'mobile',
 				news_info_id: id
 			}
-			// console.log(id)
+			// console_log(id)
 			new Promise((resolve, reject) => {
 				getNewsDetail(data).then(response => {
 					resolve(response)
@@ -248,10 +287,10 @@ export default {
 					resolve(response)
 					console_log(response)
 					if(response.state==0){
-						this.$message.error('getNews接口错误');
+						this.$message.error('getClassNews接口错误');
 					}else if(response.state==1){
 						const _list = response.content
-						this.classNewsList = [...this.classNewsList, ..._list];
+						this.classNewsList = _list;
 					
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll
@@ -269,6 +308,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+	
 .news{
 	height: 100%;
 	overflow: hidden;
@@ -316,14 +356,18 @@ export default {
 		}
 		.summary{
 			color: #525252;
-			font-size: 0.24rem;
-			line-height: 0.3rem;
+			font-size: 0.3rem;
+			line-height: 0.6rem;
 			padding-bottom: 0.4rem;
 			border-bottom: 1px solid #e6e3df;;
+			/deep/img{
+				width: 100%;
+				height: auto;
+			}
 		}
 		.more{
 			.more-title{
-				font-size: 0.24rem;
+				font-size: @title;
 				color: #323232;
 				font-weight: bold;
 				margin-top: 0.3rem;
@@ -351,7 +395,7 @@ export default {
 							// background: bisque;
 							margin: 0.2rem 0;
 							h1{
-								font-size: 0.22rem;
+								font-size: @tab-size;
 								color: #525252;
 								.word-two-line;
 								line-height: @sec-line-height;
@@ -360,7 +404,7 @@ export default {
 								position: absolute;
 								right: 0.13rem;
 								bottom: 0;
-								font-size: 0.16rem;
+								font-size: @sec-title;
 								color: #898989;
 							}
 						}

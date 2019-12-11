@@ -110,6 +110,13 @@ export default new Router({
 		meta:{
 		},  
 	},
+	{/*专题页1*/
+		path: "/spacial-2",
+		name: "Spacial-2",
+		component:() => import( './views/Spacial/Spacial-2.vue'),
+		meta:{
+		},  
+	},
 	{/*下载列表*/
 		path: "/download-list",
 		name: "DownloadList",

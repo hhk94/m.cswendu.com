@@ -10,7 +10,7 @@
 					<div class="center">
 						<div class="img-box"><img src="@/assets/img/m-download-1.png" alt=""></div>
 						<h1 class="title">{{this.download_info.file_zh_name}}</h1>
-						<div class="down-btn" @click="productHerf()">点击下载</div>
+						<div class="down-btn" @click="judgeNav()">点击下载</div>
 					</div>
 					
 					
@@ -95,7 +95,6 @@ export default {
 			})
 		},
 		productHerf(){
-			console.log(this.file_upload_id)
 			let data ={
 				user_token:store.getters.common_token,
 				app_class:'mobile',
@@ -119,6 +118,42 @@ export default {
 						reject(error)
 				})
 			})
+		},
+		judgeNav(){
+			// console.log(this.file_upload_id)
+			var ua = navigator.userAgent;
+			var isWeixin =  !!/MicroMessenger/i.test(ua);
+			console.log(isWeixin)
+			if(!isWeixin){
+				
+				this.$dialog.toast({
+					mes: '浏览器正常，即将为您下载',
+					timeout: 1500,
+					icon: 'success'
+				});
+				this.productHerf()
+			}else{
+				if(ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1){
+					// isAndroid 
+					this.$dialog.toast({
+					mes: 'Android系统，即将为您跳转默认浏览器下载',
+					timeout: 1500,
+					icon: 'success'
+					});
+					this.productHerf()
+				}
+				var isiOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+				if(isiOS){
+					//iOS
+					this.$dialog.toast({
+						mes: 'iOS系统，请您在其他浏览器打开下载',
+						timeout: 1500,
+						icon: 'error'
+					});
+				}
+				
+			}
+			
 		}
 	}
 }

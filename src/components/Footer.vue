@@ -14,8 +14,9 @@
 				<i class="iconfont icon-kecheng"></i>
 				<p>课程</p>
 			</div>
+			<!-- @click="itemClick('/kefu')" -->
 			<div
-			@click="itemClick('/kefu')"
+			
 			:class="{'footer-item':true,'footer-item-center':true,choose:this.$store.state.Home.default_footer_choose=='/kefu'}">
 				<i class="iconfont icon-kefu"></i>
 				

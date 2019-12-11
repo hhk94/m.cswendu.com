@@ -18,7 +18,8 @@
 						
 					</div>
 					<div class="list">
-						<div 
+						<div
+						@click="goToSpacial(item.course_class_name)" 
 						v-for="item of courseList"
 						:key="item.course_id"
 						class="list-item">
@@ -28,7 +29,7 @@
 								<h2>{{item.course_slogan}}</h2>
 								<h2>{{item.course_description}}</h2>
 							</div>
-							<a class="ask">在线资讯</a>
+							<a class="ask">在线咨询</a>
 						</div>
 					</div>
 					<bottom-notice :footer_bottom="footer_bottom"></bottom-notice>
@@ -85,6 +86,14 @@ export default {
 		
 	},
 	methods:{
+		goToSpacial(course_name){
+			console_log(course_name)
+			if(course_name =='集训营'){
+				this.$router.push({path:'/spacial-1',query:{}}).catch(err => {err})
+			}else if(course_name =='彩虹卡'){
+				this.$router.push({path:'/spacial-2',query:{}}).catch(err => {err})
+			}
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getBanner()
@@ -93,7 +102,7 @@ export default {
 		},
 		tabChange(item,id){
 			this.isActive = item
-			console.log(id)
+			console_log(id)
 			this.course_class_id = id
 			
 			this.courseList = []
@@ -101,8 +110,8 @@ export default {
 			this.footer_bottom = false
 			this.scroll.finishPullUp()
 			
-			console.log(this.page)
-			console.log(this.courseList )
+			console_log(this.page)
+			console_log(this.courseList )
 			this.getCourseList()
 		},
 		Scroll(){
@@ -261,7 +270,7 @@ export default {
 			
 			.tabs-item{
 				padding: 0.25rem 0;
-				font-size: @tab-size;
+				font-size: @title;
 				color:@sec-color;
 				position: relative;
 				&.active{
@@ -298,7 +307,7 @@ export default {
 					// background: red;
 					border-radius: 0.1rem;
 					overflow: hidden;
-					margin: 2%;
+					margin: 5% 2%;
 					img{
 						width: 100%;
 					}
@@ -311,12 +320,12 @@ export default {
 					// background: red;
 					margin: 4% 0;
 					h1{
-						font-size: 0.22em;
+						font-size: @tab-size;
 						color: #525252;
 					}
 					h2{
 						margin-top: 0.1rem;
-						font-size: 0.16rem;
+						font-size: @sec-title;
 						color: #898989;
 					}
 				}
@@ -324,15 +333,15 @@ export default {
 					position: absolute;
 					right: 0.1rem;
 					bottom: 0.1rem;
-					height: 0.3rem;
-					line-height: 0.3rem;
+					height: 0.4rem;
+					line-height: 0.4rem;
 					text-align: center;
 					color: white;
-					font-size: 0.14rem;
+					font-size: @sec-title;
 					background: @theme-color;
 					display: block;
 					padding: 0 0.1rem;
-					border-radius: 0.3rem;
+					border-radius: 0.4rem;
 				}
 			}
 		}

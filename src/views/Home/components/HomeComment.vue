@@ -65,7 +65,7 @@ export default {
 			padding-top: 0.2rem;
 			border-bottom: 1px solid #f2f2f2;
 			p{
-				font-size: 0.2rem;
+				font-size: @tab-size;
 				color: @tab-color;
 				line-height: @sec-line-height;
 				span{
@@ -73,7 +73,7 @@ export default {
 				}
 			}
 			.sec-title{
-				font-size: 0.16rem;
+				font-size: @sec-title;
 				color: @sec-color;
 				line-height: @sec-line-height;
 			}

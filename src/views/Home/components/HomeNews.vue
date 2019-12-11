@@ -16,7 +16,7 @@
 						<h1>{{item.title}}</h1>
 						<div>
 							<span>{{item.author}}</span>
-							<span>331</span>
+							<!-- <span>331</span> -->
 							<span>阅读</span>
 						</div>
 					</div>
@@ -153,7 +153,7 @@ export default {
 					font-size: @tab-size;
 					color: @tab-color;
 					line-height: @sec-line-height;
-					.word-two-line;
+					.word-just-one-line;
 				}
 				div{
 					position: absolute;

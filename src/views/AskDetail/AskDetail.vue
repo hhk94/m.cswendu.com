@@ -17,7 +17,7 @@
 							<span>{{this.ask_info.tag_name}}</span>
 						</div>
 					</div>
-					<div class="summary">
+					<div class="summary" v-show="JSON.stringify(this.best_answer) != '{}'">
 						<div class="img-box"><img src="@/assets/img/m-ask-detail-1.png" alt=""></div>
 						<div class="author">
 							<div class="img-box"><img src="@/assets/img/m-news-detail-1.png" alt=""></div>
@@ -38,7 +38,7 @@
 								<div class="img-box"><img src="@/assets/img/m-news-detail-1.png" alt=""></div>
 								<div class="word">
 									<h1>{{item.answer_user_name}}</h1>
-									<h2>{{this.getTime(item.create_time)}}</h2>
+									<!-- <h2>{{this.getTime(item.create_time)}}</h2> -->
 								</div>
 							</div>
 							<div class="center" v-html="item.answer_content"></div>
@@ -104,27 +104,30 @@ export default {
 	// },
 	activated(){
 		this.init()
-		// console_log('activated')
+		console_log('activated')
 	},
 	deactivated(){
-		// this.classNewsList = []
+		this.other_answer = []
+		this.best_answer = {}
+		this.ask_info = {}
+		
 	},
 	methods:{
 		getTime(time){
+			
 			return getTime(time)
 			
 		},
 		async init(){
+			
 			if(!store.getters.common_token){
 				await this.$store.dispatch('Home/setCommonToken');
 			}
 			let ask_question_id = this.$route.query.ask_question_id
-			if(ask_question_id!=this.ask_question_id){
-				this.getAskDetail(ask_question_id)
-				this.getAnswerList(ask_question_id)
-			}
+			this.getAskDetail(ask_question_id)
+			this.getAnswerList(ask_question_id)
 			this.ask_question_id = ask_question_id
-			console_log(this.best_answer)
+			console_log('init')
 			// this.$nextTick(() => {
 				
 			// });
@@ -208,9 +211,11 @@ export default {
 					if(response.state==0){
 						this.$message.error('getAskDetail接口错误');
 					}else if(response.state==1){
-						
-						this.best_answer = response.content.best_answer[0]
+						if(response.content.best_answer.length!=0){
+							this.best_answer = response.content.best_answer[0]
+						}
 						this.other_answer = response.content.other_answer
+						console_log(this.other_answer)
 					}
 					}).catch(error => {
 						reject(error)
@@ -271,6 +276,10 @@ export default {
 		.summary{
 			border-bottom: 1px solid #e6e3df;
 			padding-bottom: 0.3rem;
+			.center{
+				line-height: 0.4rem;
+				font-size: @tab-size;
+			}
 			.img-box{
 				width: 1.5rem;
 				img{

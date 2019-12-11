@@ -96,8 +96,11 @@ export default {
 			})
 		},
 		goToSpacial(course_name){
+			console_log(course_name)
 			if(course_name =='2021全年集训营'){
 				this.$router.push({path:'/spacial-1',query:{}}).catch(err => {err})
+			}else if(course_name =='2021高端彩虹卡'){
+				this.$router.push({path:'/spacial-2',query:{}}).catch(err => {err})
 			}
 		},
 		//获取新闻分类

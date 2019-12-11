@@ -14,7 +14,8 @@
 				
 			</div>
 			<div class="course-body">
-				<div 
+				<div
+				@click="goToDetail(item.course_class_name)"
 				class="course-item"
 				v-for="(item) of courseList"
 				:key="item.course_id">
@@ -54,6 +55,14 @@ export default {
 		}
 	},
 	methods:{
+		goToDetail(course_class_name){
+			console.log(course_class_name)
+			if(course_class_name=='集训营'){
+				this.$router.push({path:'/spacial-1'}).catch(err => {err})
+			}else{
+				this.$router.push({path:'/spacial-2'}).catch(err => {err})
+			}
+		},
 		tabChange(item,id){
 			this.isActive = item
 			console.log(id)
@@ -86,6 +95,7 @@ export default {
 			line-height: 0.3rem;
 			border-radius: 0.3rem;
 			color: @sec-color;
+			font-size: @tab-size;
 			&.active{
 				background:@theme-color;
 				color: white;
@@ -122,6 +132,7 @@ export default {
 					margin-top: 0.1rem;
 					font-size: @tab-size;
 					color: @tab-color;
+					line-height: @sec-line-height;
 				}
 				h2{
 					.word-just-one-line;

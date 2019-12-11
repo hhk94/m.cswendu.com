@@ -233,13 +233,13 @@ export default {
 		.tabs{
 			width: 100%;
 			display: flex;
-			justify-content: space-between;
+			justify-content:flex-start;
 			flex-wrap: wrap;
 			.tab-item{
 				font-size: @tab-size;
 				color: @tab-color;
 				padding: 0.3rem 0;
-				width: 16.6%;
+				width:20%;
 				text-align: center;
 				position: relative;
 				&.active{
@@ -267,12 +267,12 @@ export default {
 			.list-item{
 				width: 100%;
 				border-bottom: 1px solid #e6e3df;
-				padding-bottom: 30%;
-				height: 0;
+				// padding-bottom: 30%;
+				// height: 0;
 				margin-top: 0.2rem ;
 				position: relative;
 				.title{
-					font-size: 0.24rem;
+					font-size: @tab-size;
 					color: #525252;
 					font-weight: bold;
 					span{
@@ -284,18 +284,19 @@ export default {
 				p{
 					margin-top: 0.2rem;
 					width: 60%;
-					font-size: 0.2rem;
+					font-size: @sec-title;
 					line-height: 0.3rem;
 					color: #898989;
 				}
 				.tel{
 					width: 100%;
-					position: absolute;
-					left: 0;
-					bottom: 0;
+					// position: absolute;
+					// left: 0;
+					// bottom: 0;
 					color: #ffa43f;
-					font-size: 0.22rem;
+					font-size: @tab-size;
 					padding: 0.2rem 0;
+					line-height: 0.3rem;
 					i{
 						margin-right: 0.2rem;
 					}

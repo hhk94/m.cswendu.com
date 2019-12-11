@@ -7,13 +7,32 @@
 		<div class="spacial" ref="wrapper">
 			<div>
 				<div class="spacial-center" >
-					<img src="@/assets/img/spacial/spacial-1/1.jpg" alt="">
-					<img src="@/assets/img/spacial/spacial-1/2.jpg" alt="">
-					<img src="@/assets/img/spacial/spacial-1/3.jpg" alt="">
-					<!-- <img src="@/assets/img/spacial/spacial-1/4.jpg" alt=""> -->
-					<img src="@/assets/img/spacial/spacial-1/5.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-2/1.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-2/2.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-2/3.jpg" alt="">
+					<div class="table">
+						<h1 class="title">
+							<img src="@/assets/img/spacial/spacial-2/title.jpg" alt="">
+						</h1>
+						<div class="tabs">
+							<div 
+							@click="tabChange(index)"
+							v-for="(item,index) of tabs"
+							:key="index"
+							:class="{'active':isActive==item.name,'tabs-item':true}" 
+							>{{item.name}}</div>
+						</div>
+						<div class="table-center">
+							<img :src="imgSrc" alt="">
+						</div>
+					</div>
+					<!-- <img src="@/assets/img/spacial/spacial-2/4.jpg" alt=""> -->
+					<img src="@/assets/img/spacial/spacial-2/5.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-2/6.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-2/7.jpg" alt="">
 					
 					<div class="form-body">
+						<h1 class="title"><img src="@/assets/img/spacial/spacial-2/title2.jpg" alt=""></h1>
 						<div class="form">
 							<div class="center">
 								<div class="type">
@@ -53,7 +72,7 @@ import store from '@/store'
 import BScroll from 'better-scroll'
 import {submit} from '@/api/User'
 export default {
-	name:"Spacial1",
+	name:"Spacial2",
 	components:{
 		BackHeader,
 		HomeFooter,
@@ -77,6 +96,26 @@ export default {
 			phone:'',
 			qq:'',
 			timer: '',
+			tabs:[
+				{
+					'name':'全科系列',
+					'url':require('../../assets/img/spacial/spacial-2/qk.png')
+				},
+				{
+					'name':'公共课系列',
+					'url':require('../../assets/img/spacial/spacial-2/ggk.png')
+				},
+				{
+					'name':'专业课系列',
+					'url':require('../../assets/img/spacial/spacial-2/zyk.png')
+				},
+				{
+					'name':'199管综系列',
+					'url':require('../../assets/img/spacial/spacial-2/199.png')
+				},
+			],
+			isActive:'全科系列',
+			imgSrc:require('../../assets/img/spacial/spacial-2/qk.png')
 		}
 	},
 	activated() {
@@ -84,6 +123,11 @@ export default {
 		
 	},
 	methods:{
+		tabChange(index){
+			this.isActive = this.tabs[index].name
+			this.imgSrc = this.tabs[index].url
+			
+		},
 		async init(){
 			if(!store.getters.common_token){
 				await this.$store.dispatch('Home/setCommonToken');
@@ -222,17 +266,45 @@ export default {
 	top: 0;
 	left: 0;
 	.spacial-center{
-		// padding-bottom: 110vh;
-		// min-height: 110vh;
+		.table{
+			width: 100%;
+			background: #54b784;
+			.title{
+				width: 100%;
+				
+			}
+			.tabs{
+				width: @design-center;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				.tabs-item{
+					width: 25%;
+					padding:0 0.1rem;
+					font-size: 0.2rem;
+					color: #2c6143;
+					height: 0.4rem;
+					line-height: 0.4rem;
+					text-align: center;
+					border-radius:0.05rem;
+					&.active{
+						font-size: 0.24rem;
+						background:#fbea7d;
+						color:#2c6143;
+						font-weight:bold;
+					}
+				}
+			}
+		}
 	}
 	img{
 		width: 100%;
 	}
 	.form-body{
-		background: #ffc904;
 		overflow: hidden;
+		background: #54b784;
 		.form{
-			background: url("~@/assets/img/spacial/spacial-1/m-spacial-1-bg.png") no-repeat center center /contain;
+			background: url("~@/assets/img/spacial/spacial-2/m-spacial-2-bg.png") no-repeat center center /contain;
 			width: 6.14rem;
 			height: 5.62rem;
 			margin: 0 auto 2rem auto;
@@ -255,10 +327,11 @@ export default {
 					}
 				}
 				.submit{
+					// touch-action: none;
 					width: 5.14rem;
 					height: 0.68rem;
 					line-height: 0.68rem;
-					background: #ff700f;
+					background: #f6c952;
 					color: white;
 					font-size: 0.28rem;
 					text-align: center;

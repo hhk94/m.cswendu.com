@@ -101,7 +101,7 @@ export default {
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
-				console_log(this.alreadyTop)
+				// console_log(this.alreadyTop)
 				if(top>60){
 					let opacity = 1
 					opacity = opacity>1?1:opacity
@@ -207,15 +207,17 @@ export default {
 				.ask-name{
 					float: left;
 					width: 80%;
-					margin: 0.05rem 0.1rem;
-					font-size: 0.24rem;
+					margin: 0 0.1rem;
+					font-size: @title;
 					color: #a3a3a3;
+					line-height: 0.4rem;
 				}
 				
 			}
 			.summary{
 				
-				font-size: 0.24rem;
+				font-size: @tab-size;
+				line-height: 0.4rem;
 				color: #898989;
 				p{
 					margin: 0.02rem 0;

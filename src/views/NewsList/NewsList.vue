@@ -221,7 +221,7 @@ export default {
 					// background: bisque;
 					margin: 0.2rem 0;
 					h1{
-						font-size: 0.22rem;
+						font-size: @tab-size;
 						color: #525252;
 						.word-two-line;
 						line-height: @sec-line-height;

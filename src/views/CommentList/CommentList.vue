@@ -188,7 +188,7 @@ export default {
 				margin-bottom: 0.3rem;
 				.comment-slog{
 					display: inline-block;
-					font-size: 0.2rem;
+					font-size: @tab-size;
 					color: white;
 					height: 0.4rem;
 					line-height: 0.4rem;
@@ -198,18 +198,18 @@ export default {
 				}
 				.comment-name{
 					margin: 0 0.1rem;
-					font-size: 0.24rem;
+					font-size: @tab-size;
 					color: #a3a3a3;
 				}
 				.summary{
 					text-indent: 0.2rem;
-					font-size: 0.24rem;
+					font-size: @tab-size;
 					color: #525252;
 					line-height: 0.4rem;
 				}
 			}
 			h2{
-				font-size: 0.2rem;
+				font-size:@sec-title;
 				color: #898989;
 				
 			}
