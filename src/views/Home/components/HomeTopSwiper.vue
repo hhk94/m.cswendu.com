@@ -8,14 +8,15 @@
 				<img src="@/assets/img/m-phone.png" alt="">
 			</div>
 		</div>
-		<div class="swiper-center">
-			<swiper :options="swiperOption">
+		<div class="swiper-center" >
+			<swiper :options="swiperOption" ref="mySwiper">
 				
 				<swiper-slide 
+				:data_index="item.jump"
 				v-for="(item,index) of bannerList"
 				:key="index"
 				>
-					<a :href="item.jump">
+					<a >
 						<img :src="item.img" alt="">
 					</a>
 					
@@ -33,6 +34,7 @@ export default {
 	name:'HomeTopSwiper',
 	data() {
 		return {
+			
 			swiperOption: {
 				pagination: {
 					el: '.swiper-pagination',
@@ -46,6 +48,11 @@ export default {
 			}
 		}
 	},
+	computed: {
+		swiper() {
+			return this.$refs.mySwiper.swiper;
+		}
+	},
 	props:{
 		bannerList:Array
 	},
@@ -53,6 +60,18 @@ export default {
 		back(){
 			this.$router.go(-1);
 		}
+	},
+	mounted() {
+		let _this = this;
+		this.swiper.on('tap', function () {
+			// _this.goToDetail(this.clickedSlide.getAttribute('data_index'));//调用你自定义的方法
+			if(this.clickedSlide.getAttribute('data_index')=='qn'){
+				// console.log('a')
+				_this.$router.push({path:'/spacial-1'}).catch(err => {err})
+			}else{
+				_this.$router.push({path:'/spacial-2'}).catch(err => {err})
+			}
+		})
 	}
 }
 </script>
@@ -60,7 +79,7 @@ export default {
 <style scoped lang="less">
 .swiper-body{
 	img{
-		width: 100%;
+		width: 101%;
 	}
 	position: relative;
 	z-index: 3;
@@ -93,7 +112,9 @@ export default {
 		overflow: hidden;
 		box-shadow: 0 0 0.05rem 0.05rem @theme-color;
 		height: 0;
-		
+		position: fixed;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 	h1{
 		color: red;

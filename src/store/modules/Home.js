@@ -25,7 +25,7 @@ const actions = {
 	setCommonToken({ commit }) {
 		let page_url = window.location.href;
 		let data ={
-			"app_class": "pc",
+			"app_class": "mobile",
 			"url": page_url
 		}
 		// data = qs.stringify(data)

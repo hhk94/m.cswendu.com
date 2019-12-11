@@ -22,6 +22,7 @@
 			</div>
 		</div>
 		<home-footer :alreadyTop="alreadyTop"></home-footer>	
+		<div v-html="script"></div>
 	</div>
 	
 </template>
@@ -84,7 +85,8 @@ export default {
 			footer_bottom:false,
 			scroll:null,
 			//判断顶部展示顶线
-			alreadyTop:true
+			alreadyTop:true,
+			script:''
 			
 		}
 	},
@@ -107,9 +109,37 @@ export default {
 			this.getHotTeacher()
 			this.getComment()
 			this.getAllNews()
+			
 			this.Scroll()
 			
 		},
+		// joinScript(){
+		// 	let data ={
+		// 		key:'baidu_tongji',
+		// 		app_class:'mobile',
+		// 		user_token:store.getters.common_token,
+		// 	}
+		// 	new Promise((resolve, reject) => {
+		// 		getHomeBanner(data).then(response => {
+		// 			resolve()
+		// 			console_log(response)
+		// 			if(response.state==0){
+		// 				this.$message.error('joinScript接口错误');
+		// 			}else if(response.state==1){
+		// 				//empty
+		// 				// let script = response.value
+		// 				this.script= response.value
+		// 				let script = `aaaaa`
+		// 				console.log("document.body.getElementsByTagName('head')[0]")
+		// 				console.log(document.getElementsByTagName('head'))
+		// 				document.body.appendChild(script)
+						
+		// 			}
+		// 			}).catch(error => {
+		// 				reject(error)
+		// 		})
+		// 	})
+		// },
 		Scroll(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
 				probeType:2,

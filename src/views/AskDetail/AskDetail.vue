@@ -279,6 +279,10 @@ export default {
 			.center{
 				line-height: 0.4rem;
 				font-size: @tab-size;
+				/deep/img{
+					width: 100%;
+					height: auto;
+				}
 			}
 			.img-box{
 				width: 1.5rem;

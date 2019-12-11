@@ -134,6 +134,7 @@ export default {
 						font-size: @sec-title;
 						color: #666;
 						line-height:@sec-line-height;
+						margin-bottom: 0.2rem;
 					}
 				}
 			}
