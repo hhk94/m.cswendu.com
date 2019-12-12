@@ -20,7 +20,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		<!-- <home-footer :alreadyTop="alreadyTop"></home-footer> -->
 	</div>
 	
 </template>
@@ -28,7 +28,7 @@
 <script>
 
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+// import HomeFooter from '@/components/Footer'
 //自定义公共js - own common css
 import { console_log} from "@/utils/base.js"
 import store from '@/store'
@@ -38,7 +38,7 @@ export default {
 	name:"downloadDetail",
 	components:{
 		BackHeader,
-		HomeFooter,
+		// HomeFooter,
 	},
 	data (){
 		return {
@@ -160,6 +160,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.download-body{
+	height: 100%;
+}
 .download{
 	height: 100%;
 	overflow: hidden;

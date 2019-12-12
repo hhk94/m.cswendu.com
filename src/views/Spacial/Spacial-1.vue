@@ -6,6 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="spacial" ref="wrapper">
 			<div>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="spacial-center" >
 					<img src="@/assets/img/spacial/spacial-1/1.jpg" alt="">
 					<img src="@/assets/img/spacial/spacial-1/2.jpg" alt="">
@@ -38,7 +39,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -46,7 +47,7 @@
 <script>
 
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 //自定义公共js - own common css
 import { console_log} from "@/utils/base.js"
 import store from '@/store'
@@ -56,7 +57,7 @@ export default {
 	name:"Spacial1",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 	},
 	data (){
 		return {
@@ -89,7 +90,10 @@ export default {
 				await this.$store.dispatch('Home/setCommonToken');
 			}
 			this.Scroll()
-			this.updated()
+			this.$nextTick(()=>{
+				this.updated()
+			})
+			
 		},
 		updated () {
 			//解决better-scroll因为图片没有下载完导致的滚动条高度不够，无法浏览全部内容的问题。
@@ -99,16 +103,26 @@ export default {
 			let count = 0
 			let length = img.length
 			console_log(img)
-			if (length) {
-			let timer = setInterval(() => {
-			if (count == length) {
-			// console_log('refresh')
-			this.scroll.refresh()
-			clearInterval(timer)
-			} else if (img[count].complete) {
-			count ++
-			}
-			}, 100)
+			if(img){
+				if (length) {
+					let timer = setInterval(() => {
+						console_log(img[count])
+						console_log(length)
+						console_log(count)
+					if (count == length) {
+						// console_log('refresh')
+						this.scroll.refresh()
+						clearInterval(timer)
+					} else if (img[count]) {
+						if(img[count].complete){
+							count ++
+						}
+					}else if(!img[count]){
+						this.scroll.refresh()
+						clearInterval(timer)
+					}
+					}, 100)
+				}
 			}
 		}, 
 		Scroll(){
@@ -214,6 +228,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.spacial-body{
+	height: 100%;
+}
 .spacial{
 	height: 100%;
 	overflow: hidden;

@@ -7,6 +7,7 @@
 		<div class="map" ref="wrapper">
 			<div>
 				<div >
+					<top-notice :alreadyTop="alreadyTop"></top-notice>
 					<div class="top">
 						<div class="word">
 							<h1>{{this.name}}</h1>
@@ -46,7 +47,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -54,7 +55,7 @@
 <script>
 
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 //自定义公共js - own common css
 import { console_log} from "@/utils/base.js"
 import store from '@/store'
@@ -63,7 +64,7 @@ export default {
 	name:"HomeCourse",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 	},
 	data (){
 		return {
@@ -152,6 +153,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.map-body{
+	height: 100%;
+}
 .map{
 	height: 100%;
 	overflow: hidden;

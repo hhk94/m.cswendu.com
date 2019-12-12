@@ -6,6 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="about-us" ref="wrapper">
 			<div>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="about-us-top"></div>
 				<div class="about-us-center">
 					<div class="img-box"><img src="@/assets/img/m-about-us-1.jpg" alt=""></div>
@@ -25,7 +26,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -33,7 +34,7 @@
 <script>
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
@@ -43,7 +44,7 @@ export default {
 	name:"HomeCourse",
 	components:{
 		DefaultHeader,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data (){
@@ -120,6 +121,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.about-us-body{
+	height: 100%;
+}
 .about-us{
 	height: 100%;
 	overflow: hidden;

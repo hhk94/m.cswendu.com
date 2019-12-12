@@ -6,6 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="hot-course" ref="wrapper">
 			<div>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="hot-course-top"></div>
 				<div class="hot-course-center">
 					<div class="hot-item"
@@ -26,7 +27,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -34,7 +35,7 @@
 <script>
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
@@ -44,7 +45,7 @@ export default {
 	name:"HomeCourse",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data (){
@@ -159,6 +160,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.hot-course-body{
+	height: 100%;
+}
 .hot-course{
 	height: 100%;
 	overflow: hidden;

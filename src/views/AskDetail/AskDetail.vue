@@ -6,7 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="ask" ref="wrapper">
 			<div>
-				
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="ask-center">
 					<h1 class="title">{{this.ask_info.ask_title}}</h1>
 					<div class="author">
@@ -52,7 +52,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -60,7 +60,7 @@
 <script>
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log,getTime } from "@/utils/base.js"
@@ -71,7 +71,7 @@ export default {
 	name:"HomeCourse",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data (){
@@ -228,6 +228,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.ask-body{
+	height: 100%;
+}
 .ask{
 	height: 100%;
 	overflow: hidden;

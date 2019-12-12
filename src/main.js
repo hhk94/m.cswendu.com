@@ -46,8 +46,8 @@ router.beforeEach((to, from, next) => {
 	
 	// let page_url = window.location.href;
 	// let data ={
-	// 	"app_class": "pc",
-	// 	"url": page_url
+	// 	"app_class": "mobile",
+	// 	"user_token": page_url
 	// }	 
 	// // 获取commonToken
 	// new Promise((resolve, reject) => {

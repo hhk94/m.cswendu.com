@@ -1,13 +1,14 @@
 <template>
-	<div class="comment-body">
+	<div class="campus-body">
 		<component
 		:is="headerName" 
 		v-show="showAbs"
 		:style="opacityStyle"></component>
-		<div class="comment" ref="wrapper">
+		<div class="campus" ref="wrapper">
 			<div>
-				<div class="comment-top"></div>
-				<div class="comment-center">
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
+				<div class="campus-top"></div>
+				<div class="campus-center">
 					<div class="tabs">
 						
 						<div
@@ -37,7 +38,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -45,7 +46,7 @@
 <script>
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
@@ -55,7 +56,7 @@ export default {
 	name:"HomeCourse",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data (){
@@ -68,7 +69,7 @@ export default {
 			showAbs:true,
 			opacityStyle:{
 				opacity:1,
-				background:'transparent'
+				background:'#7abff7'
 			},
 			headerName:'BackHeader',
 			//下拉显示文字
@@ -212,21 +213,24 @@ export default {
 </script>
 
 <style scoped lang="less">
-.comment{
+.campus-body{
+	height: 100%;
+}
+.campus{
 	height: 100%;
 	overflow: hidden;
 	width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
-	.comment-top{
+	.campus-top{
 		overflow: hidden;
 		width: 100%;
 		height: 0;
 		padding-bottom: 35.1%;
 		background: url('~@/assets/img/m-teacher-bg.png') no-repeat center center /cover;
 	}
-	.comment-center{
+	.campus-center{
 		width: @design-center;
 		margin: 0.2rem auto 0 auto;
 		padding-bottom:0.5rem;

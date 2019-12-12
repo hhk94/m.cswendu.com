@@ -4,7 +4,7 @@
 			<div class="m-logo" @click="back()">
 				<img src="@/assets/img/m-logo.png" alt="">
 			</div>
-			<div class="m-phone">
+			<div class="m-phone" @click="tel('tel://15367826050')">
 				<img src="@/assets/img/m-phone.png" alt="">
 			</div>
 		</div>
@@ -45,7 +45,8 @@ export default {
 					delay: 2500,
 					disableOnInteraction: false
 				},
-			}
+			},
+
 		}
 	},
 	computed: {
@@ -59,14 +60,17 @@ export default {
 	methods:{
 		back(){
 			this.$router.go(-1);
-		}
+		},
+		tel(href){
+			window.location.href=href
+		},
 	},
+
 	mounted() {
 		let _this = this;
 		this.swiper.on('tap', function () {
 			// _this.goToDetail(this.clickedSlide.getAttribute('data_index'));//调用你自定义的方法
 			if(this.clickedSlide.getAttribute('data_index')=='qn'){
-				// console.log('a')
 				_this.$router.push({path:'/spacial-1'}).catch(err => {err})
 			}else{
 				_this.$router.push({path:'/spacial-2'}).catch(err => {err})

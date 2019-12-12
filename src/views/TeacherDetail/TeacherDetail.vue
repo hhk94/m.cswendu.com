@@ -6,6 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="teacher" ref="wrapper">
 			<div>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="teacher-center">
 					<div class="pic-and-word">
 						<div class="pic"><img :src="this.teacher_info.teacher_cover" alt=""></div>
@@ -37,7 +38,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -45,7 +46,7 @@
 <script>
 
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 //自定义公共js - own common css
 import { console_log} from "@/utils/base.js"
 import store from '@/store'
@@ -55,7 +56,7 @@ export default {
 	name:"TeacherDetail",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 	},
 	data (){
 		return {
@@ -166,6 +167,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.teacher-body{
+	height: 100%;
+}
 .teacher{
 	height: 100%;
 	overflow: hidden;

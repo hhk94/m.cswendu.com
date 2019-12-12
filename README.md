@@ -29,6 +29,7 @@
 - 6.showAbs/opacityStyle	fixed导航样式调整
 - 7.page/limit	用于上拉加载的组件计算分页
 - 8.scroll	用于调用better-scroll制作滚动
+- 9.isKeep 用于判断swiper重新渲染
 
 #### 2019-12-10
 
@@ -40,7 +41,7 @@
 - 2.修复news-detail页面进入不滚动至头部问题
 - 3.course-list 暂时为根据class-name 跳转3个不同的spacial专题页面
 - 4.修复ask-detail页面 没有最佳回答渲染问题
-
+- 5.增加页面切换动画，修复swiperkeep-alive中auto-play失效问题
 
 ## Project setup
 ```

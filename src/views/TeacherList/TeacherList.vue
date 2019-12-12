@@ -6,6 +6,7 @@
 		:style="opacityStyle"></component>
 		<div class="comment" ref="wrapper">
 			<div>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="comment-top"></div>
 				<div class="comment-center">
 					<div class="tabs">
@@ -37,7 +38,7 @@
 			</div>
 			
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>
+		
 	</div>
 	
 </template>
@@ -45,7 +46,7 @@
 <script>
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
@@ -55,7 +56,7 @@ export default {
 	name:"HomeCourse",
 	components:{
 		BackHeader,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data (){
@@ -206,6 +207,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.comment-body{
+	height: 100%;
+}
 .comment{
 	height: 100%;
 	overflow: hidden;

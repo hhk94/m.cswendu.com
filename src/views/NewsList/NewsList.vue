@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="news-list-father">
 		<component
 		:is="headerName" 
 		v-show="showAbs"
@@ -7,7 +7,8 @@
 		></component>
 		<div class="news-list-body" ref="wrapper">
 			<div>
-				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper"></home-top-swiper>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>	
+				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper && isKeep"></home-top-swiper>
 				<div class="news-list">
 					
 					<div class="list">
@@ -27,14 +28,14 @@
 				</div>
 			</div>
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>	
+		
 	</div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 import { getHomeBanner} from '@/api/Home'
 import {getNewsList } from '@/api/Base'
@@ -47,7 +48,7 @@ export default {
 	components:{
 		DefaultHeader,
 		HomeTopSwiper,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data(){
@@ -66,12 +67,20 @@ export default {
 			alreadyTop:true,
 			page:1,
 			limit:7,
-			footer_bottom:false
+			footer_bottom:false,
+			isKeep:false,//解决keep-alive切换 swiper loop问题
 		}
 	},
 	mounted() {
 		this.init()
 		
+	},
+	activated() {
+		// console.log('swiper')
+		this.isKeep = true
+	},
+	deactivated() {
+		this.isKeep = false
 	},
 	methods:{
 		goToDetail(id,class_id_array){
@@ -191,6 +200,9 @@ export default {
 </script>
 
 <style  scoped lang="less">
+.news-list-father{
+	height: 100%;
+}
 .news-list-body{
 	height: 100%;
 	overflow: hidden;
@@ -215,7 +227,7 @@ export default {
 					float: left;
 					width: calc(~" 100% - 29% ");
 					float: left;
-					padding: 0 0.13rem 15.2% 0.13rem;
+					padding: 0 0.13rem 21.2% 0.13rem;
 					height: 0;
 					position: relative;
 					// background: bisque;
@@ -239,7 +251,7 @@ export default {
 					float: left;
 					width: 29%;
 					height: 0;
-					padding-bottom: 15.2%;
+					padding-bottom: 16.2%;
 					img{
 						width: 100%;
 					}

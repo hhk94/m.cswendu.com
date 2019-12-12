@@ -1,13 +1,12 @@
 <template>
-	<div class="home">
+	<div >
 		<component 
 		:is="headerName" 
 		v-show="showAbs"
 		:style="opacityStyle"></component>
 		<div class="home-index" ref="wrapper">
 			<div>
-				<top-notice :alreadyTop="alreadyTop"></top-notice>
-				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper_banner && isKeep"></home-top-swiper>
+				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper_banner"></home-top-swiper>
 				<home-tabs></home-tabs>
 				<home-hot :newsList="newsList" :questionList="questionList"></home-hot>
 				<home-course 
@@ -22,8 +21,7 @@
 				:allNewsList="allNewsList"></home-news>
 			</div>
 		</div>
-		<!-- <home-footer :alreadyTop="alreadyTop"></home-footer>	 -->
-		
+		<home-footer :alreadyTop="alreadyTop"></home-footer>	
 		<div v-html="script"></div>
 	</div>
 	
@@ -32,15 +30,14 @@
 <script>
 // import qs from 'qs'
 import BScroll from 'better-scroll'
-import HomeTopSwiper from './components/HomeTopSwiper'
-import HomeTabs from './components/HomeTabs'
-import HomeHot from './components/HomeHot'
-import HomeCourse from './components/HomeCourse'
-import HomeTeacher from './components/HomeTeacher'
-import HomeComment from './components/HomeComment'
-import HomeNews from './components/HomeNews'
+import HomeTopSwiper from '../Home/components/HomeTopSwiper'
+import HomeTabs from '../Home/components/HomeTabs'
+import HomeHot from '../Home/components/HomeHot'
+import HomeCourse from '../Home/components/HomeCourse'
+import HomeTeacher from '../Home/components/HomeTeacher'
+import HomeComment from '../Home/components/HomeComment'
+import HomeNews from '../Home/components/HomeNews'
 import HomeDefaultHeader from '@/components/DefaultHeader'
-import TopNotice from '@/components/TopNotice'
 import HomeFooter from '@/components/Footer'
 import { getHomeBanner,getHotTeacher} from '@/api/Home'
 import {getNewsClass,getNewsList,getQuestionList,getCourseClass,getCourseList,getComment } from '@/api/Base'
@@ -50,7 +47,6 @@ import store from '@/store'
 export default {
 	name:"Home",
 	components:{
-		TopNotice,
 		HomeDefaultHeader,
 		HomeTopSwiper,
 		HomeTabs,
@@ -90,17 +86,12 @@ export default {
 			scroll:null,
 			//判断顶部展示顶线
 			alreadyTop:true,
-			script:'',
-			isKeep:false,//解决keep-alive切换 swiper loop问题
+			script:''
 			
 		}
 	},
-	activated() {
-		// console.log('swiper')
-		this.isKeep = true
-	},
-	deactivated() {
-		this.isKeep = false
+	created(){
+		console.log("cerate")
 	},
 	mounted() {
 		this.init()
@@ -109,6 +100,7 @@ export default {
 		
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
+			// token = token.content.user_token
 			this.tokenOver = true
 			this.getBanner()
 			this.getNewsList()
@@ -117,6 +109,7 @@ export default {
 			this.getHotTeacher()
 			this.getComment()
 			this.getAllNews()
+			
 			this.Scroll()
 			
 		},
@@ -402,9 +395,6 @@ export default {
 </script>
 
 <style scoped>
-.home{
-	height: 100%;
-}
 .home-index{
 	height: 100%;
 	overflow: hidden;

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="top-notice" v-show="this.alreadyTop">我已经到头啦！~</div>
+
 		<div class="footer">
 			<div 
 			@click="itemClick('/shouye')" 
@@ -61,12 +61,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.top-notice{
-	text-align: center;
-	color: @theme-color;
-	font-size: 0.2rem;
-	padding: 0.1rem 0;
-}
+
 .footer{
 	position: fixed;
 	bottom: 0;

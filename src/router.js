@@ -12,11 +12,19 @@ export default new Router({
 	path: '/',
 	redirect: '/shouye' ,
 	},
+	{/*测试*/
+		path: "/test",
+		name: "Test",
+		component: () => import( './views/Test/Test'),
+		meta:{
+		},  
+	},
     {/*首页*/
 		path: "/shouye",
 		name: "Home",
 		component: Home,
 		meta:{
+			index:1
 		},  
     },
 	{/*热门课程列表*/
@@ -24,6 +32,7 @@ export default new Router({
 		name: "HotCourse",
 		component: () => import( './views/HotCourse/HotCourse'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*关于我们*/
@@ -31,6 +40,7 @@ export default new Router({
 		name: "AboutUs",
 		component:() => import( './views/AboutUs/AboutUs.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*校区地址*/
@@ -38,6 +48,7 @@ export default new Router({
 		name: "CampusList",
 		component:() => import( './views/CampusList/CampusList.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*校区地址*/
@@ -45,6 +56,7 @@ export default new Router({
 		name: "CampusDetail",
 		component:() => import( './views/CampusDetail/CampusDetail.vue'),
 		meta:{
+			index:3
 		},  
 	},
 	{/*课程列表*/
@@ -52,6 +64,7 @@ export default new Router({
 		name: "CourseList",
 		component:() => import( './views/CourseList/CourseList.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*新闻列表*/
@@ -60,12 +73,14 @@ export default new Router({
 		component:() => import( './views/NewsList/NewsList.vue'),
 		meta:{
 		},  
+		index:2
 	},
 	{/*新闻详情*/
 		path: "/news-detail",
 		name: "NewsDetail",
 		component:() => import( './views/NewsDetail/NewsDetail.vue'),
 		meta:{
+			index:3
 		},  
 	},
 	{/*评论列表*/
@@ -73,6 +88,7 @@ export default new Router({
 		name: "CommentList",
 		component:() => import( './views/CommentList/CommentList.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*问答列表*/
@@ -80,6 +96,7 @@ export default new Router({
 		name: "AskList",
 		component:() => import( './views/AskList/AskList.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*问答详情*/
@@ -87,6 +104,7 @@ export default new Router({
 		name: "AskDetail",
 		component:() => import( './views/AskDetail/AskDetail.vue'),
 		meta:{
+			index:3
 		},  
 	},
 	{/*教师列表*/
@@ -94,6 +112,7 @@ export default new Router({
 		name: "TeacherList",
 		component:() => import( './views/TeacherList/TeacherList.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*教师详情*/
@@ -101,6 +120,7 @@ export default new Router({
 		name: "TeacherDetail",
 		component:() => import( './views/TeacherDetail/TeacherDetail.vue'),
 		meta:{
+			index:3
 		},  
 	},
 	{/*专题页1*/
@@ -108,6 +128,7 @@ export default new Router({
 		name: "Spacial-1",
 		component:() => import( './views/Spacial/Spacial-1.vue'),
 		meta:{
+			index:3
 		},  
 	},
 	{/*专题页1*/
@@ -115,6 +136,7 @@ export default new Router({
 		name: "Spacial-2",
 		component:() => import( './views/Spacial/Spacial-2.vue'),
 		meta:{
+			index:3
 		},  
 	},
 	{/*下载列表*/
@@ -122,6 +144,7 @@ export default new Router({
 		name: "DownloadList",
 		component:() => import( './views/DownloadList/DownloadList.vue'),
 		meta:{
+			index:2
 		},  
 	},
 	{/*下载列表*/
@@ -129,8 +152,10 @@ export default new Router({
 		name: "DownloadDetail",
 		component:() => import( './views/DownloadDetail/DownloadDetail.vue'),
 		meta:{
+			index:3
 		},  
 	},
+	
   ]
 });
 

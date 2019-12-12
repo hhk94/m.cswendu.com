@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="course-list-father">
 		<component
 		:is="headerName" 
 		v-show="showAbs"
@@ -7,7 +7,8 @@
 		></component>
 		<div class="course-list-body" ref="wrapper">
 			<div>
-				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper"></home-top-swiper>
+				<top-notice :alreadyTop="alreadyTop"></top-notice>
+				<home-top-swiper :bannerList="bannerList" v-if="hasSwiper && isKeep"></home-top-swiper>
 				<div class="course-list">
 					<div class="tabs">
 						<div 
@@ -36,14 +37,15 @@
 				</div>
 			</div>
 		</div>
-		<home-footer :alreadyTop="alreadyTop"></home-footer>	
+		
+		
 	</div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
-import HomeFooter from '@/components/Footer'
+import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
 import { getHomeBanner} from '@/api/Home'
 import {getCourseClass,getCourseList } from '@/api/Base'
@@ -56,7 +58,7 @@ export default {
 	components:{
 		DefaultHeader,
 		HomeTopSwiper,
-		HomeFooter,
+		TopNotice,
 		BottomNotice
 	},
 	data(){
@@ -78,8 +80,16 @@ export default {
 			page:1,
 			limit:4,
 			course_class_id:0,
-			footer_bottom:false
+			footer_bottom:false,
+			isKeep:false,//解决keep-alive切换 swiper loop问题
 		}
+	},
+	activated() {
+		// console.log('swiper')
+		this.isKeep = true
+	},
+	deactivated() {
+		this.isKeep = false
 	},
 	mounted() {
 		this.init()
@@ -128,6 +138,7 @@ export default {
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
+				console_log(this.alreadyTop)
 				if(top>60){
 					let opacity = top/140
 					opacity = opacity>1?1:opacity
@@ -248,6 +259,9 @@ export default {
 </script>
 
 <style  scoped lang="less">
+.course-list-father{
+	height: 100%;
+}
 .course-list-body{
 	height: 100%;
 	overflow: hidden;
