@@ -35,10 +35,11 @@
 - 1.better-scroll click属性在页面测试中会导致click事件触发2次，但是禁止后移动端不触发，仍然要打开为true
 - 2.download-detail页面细节有待完善
 
-#### 2019-12-10
+#### 2019-12-12
 - 1.修复新闻页面同类class 循环 key 重复问题
 - 2.修复news-detail页面进入不滚动至头部问题
 - 3.course-list 暂时为根据class-name 跳转3个不同的spacial专题页面
+- 4.修复ask-detail页面 没有最佳回答渲染问题
 
 
 ## Project setup
