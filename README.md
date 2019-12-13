@@ -15,6 +15,7 @@
 - 10.上拉提示组件封装
 - 11.fastclick处理点击事件
 - 12.vue-baidu-map 实现地图功能
+- 13.animate 处理动画效果
 
 
 #### 页面参数定义
@@ -43,6 +44,7 @@
 - 4.修复ask-detail页面 没有最佳回答渲染问题
 - 5.增加页面切换动画，修复swiperkeep-alive中auto-play失效问题
 - 6.顶部提示封装到公共components
+- 7.新增download 下载需要填写form表单， animate制作动画
 
 ## Project setup
 ```
