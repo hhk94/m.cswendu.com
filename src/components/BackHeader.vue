@@ -50,7 +50,7 @@ export default {
 	img{
 		width: 100%;
 	}
-	// background: @theme-color;
+	background: @theme-color;
 	.header-body{
 		position: relative;
 		overflow: hidden;

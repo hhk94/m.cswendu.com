@@ -112,7 +112,7 @@ export default {
 					let opacity = top/140
 					opacity = opacity>1?1:opacity
 					// this.opacityStyle = {opacity}
-					this.opacityStyle = {opacity:opacity,background: "#7abff7"}
+					this.opacityStyle = {opacity:opacity}
 					this.showAbs = true
 				}else{
 					this.showAbs = false

@@ -65,7 +65,7 @@ export default {
 			showAbs:true,
 			opacityStyle:{
 				opacity:1,
-				background:'#7abff7'
+				// background:'#7abff7'
 			},
 			headerName:'BackHeader',
 			//下拉显示文字
@@ -106,7 +106,7 @@ export default {
 				if(top>60){
 					let opacity = 1
 					opacity = opacity>1?1:opacity
-					this.opacityStyle = {opacity:opacity,background: "#7abff7"}
+					this.opacityStyle = {opacity:opacity}
 					// console_log(this.opacityStyle)
 					// this.showAbs = true
 				}else{

@@ -92,7 +92,7 @@ export default {
 			alreadyTop:true,
 			script:'',
 			isKeep:false,//解决keep-alive切换 swiper loop问题
-			
+			// i:1
 		}
 	},
 	activated() {
@@ -108,6 +108,8 @@ export default {
 	methods:{
 		
 		async init(){
+			// console.log(this.i)
+			// this.i++
 			await this.$store.dispatch('Home/setCommonToken');
 			this.tokenOver = true
 			this.getBanner()

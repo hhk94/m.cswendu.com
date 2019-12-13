@@ -42,6 +42,7 @@
 - 3.course-list 暂时为根据class-name 跳转3个不同的spacial专题页面
 - 4.修复ask-detail页面 没有最佳回答渲染问题
 - 5.增加页面切换动画，修复swiperkeep-alive中auto-play失效问题
+- 6.顶部提示封装到公共components
 
 ## Project setup
 ```

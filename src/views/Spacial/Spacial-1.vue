@@ -65,7 +65,7 @@ export default {
 			showAbs:true,
 			opacityStyle:{
 				opacity:1,
-				background:'#7abff7'
+				// background:'#7abff7'
 			},
 			background:{
 				background:''
