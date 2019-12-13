@@ -28,3 +28,24 @@ export function productHerf(data) {
 		data
 	})
 }
+
+
+//获取验证码
+export function getCode(data) {
+	data = qs.stringify(data)
+	return request({
+		url: '/app/check_user_phone',
+		method: 'post',
+		data
+	})
+}
+
+//报名
+export function submitUserInfo(data) {
+	data = qs.stringify(data)
+	return request({
+		url: '/app/check_code_sms',
+		method: 'post',
+		data
+	})
+}

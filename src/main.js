@@ -21,6 +21,9 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 import fastClick from 'fastclick'
 fastClick.attach(document.body)
 
+//animate
+import animate from 'animate.css'
+Vue.use(animate)
 //vuex
 import storeTotal from '@/store'
 import Vuex from 'vuex'
