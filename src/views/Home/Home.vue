@@ -92,11 +92,9 @@ export default {
 			alreadyTop:true,
 			script:'',
 			isKeep:false,//解决keep-alive切换 swiper loop问题
-			// i:1
 		}
 	},
 	activated() {
-		// console.log('swiper')
 		this.isKeep = true
 	},
 	deactivated() {
@@ -107,9 +105,7 @@ export default {
 	},
 	methods:{
 		
-		async init(){
-			// console.log(this.i)
-			// this.i++
+		async init(){	
 			await this.$store.dispatch('Home/setCommonToken');
 			this.tokenOver = true
 			this.getBanner()
@@ -120,7 +116,11 @@ export default {
 			this.getComment()
 			this.getAllNews()
 			this.Scroll()
-			
+			// console_log(store.state.Home.common_token)
+			this.joinScript()
+		},
+		joinScript(){
+			this.$parent.joinScript();	
 		},
 		Scroll(){
 			this.scroll = new BScroll(this.$refs.wrapper,{

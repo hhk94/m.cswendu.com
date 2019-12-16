@@ -1,12 +1,15 @@
 // import { login, logout, getInfo } from '@/api/user'
 // import { getToken, setToken, removeToken } from '@/utils/auth'
 import { setCommonToken,setLocalStorageCommonToken } from '@/api/Token'
+import { getHomeBanner} from '@/api/Home'
 import { console_log } from "@/utils/base.js"
+import store from '@/store'
 // import qs from 'qs'
 const default_footer_choose = localStorage.getItem('DEFAULT_FOOTER_CHOOSE')?localStorage.getItem('DEFAULT_FOOTER_CHOOSE'):'shouye'
 const state = {
 	common_token:'',
-	default_footer_choose:default_footer_choose
+	default_footer_choose:default_footer_choose,
+	baidu_script:''
   // introduction: '',
   
 }
@@ -18,6 +21,9 @@ const mutations = {
 	DEFAULT_FOOTER_CHOOSE: (state, item) => {
 		state.default_footer_choose = item
 	},
+	BAIDU_SCRIPT: (state, item) => {
+		state.baidu_script = item
+	},
 }
 
 const actions = {
@@ -28,20 +34,46 @@ const actions = {
 			"app_class": "mobile",
 			"url": page_url
 		}
-		// data = qs.stringify(data)
-		// console.log(data)
+		console_log()
+		if(!store.getters.common_token){
+			return new Promise((resolve, reject) => {
+				setCommonToken(data).then(response => {
+					resolve(response)
+					setLocalStorageCommonToken(response.content.user_token)
+					commit('COMMON_TOKEN', response.content.user_token)
+					console_log('token设置完成')
+					}).catch(error => {
+						reject(error)
+				})
+			})
+		}
+		
+	},
+	joinScript({ commit }) {
+		let data ={
+		key:'baidu_tongji',
+		app_class:'mobile',
+		user_token:store.getters.common_token,
+		}
 		return new Promise((resolve, reject) => {
-			setCommonToken(data).then(response => {
+			getHomeBanner(data).then(response => {
 				resolve(response)
-				setLocalStorageCommonToken(response.content.user_token)
-				commit('COMMON_TOKEN', response.content.user_token)
-				console_log('token设置完成')
+				console_log(response)
+				if(response.state==0){
+					this.$message.error('joinScript接口错误');
+				}else if(response.state==1){
+					//empty
+					// let script = response.value
+					this.script= response.value
+					commit('BAIDU_SCRIPT', response.value)
+					
+				}
 				}).catch(error => {
 					reject(error)
 			})
 		})
+		
 	},
-	
 	footerClick({ commit },item){
 		console_log(item)
 		commit('DEFAULT_FOOTER_CHOOSE', item)

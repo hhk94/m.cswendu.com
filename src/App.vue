@@ -17,17 +17,17 @@
 
 <script>
 //自定义公共js - own common css
-import { console_log } from "@/utils/base.js"
+// import { console_log } from "@/utils/base.js"
 import HomeFooter from '@/components/Footer'
-import store from '@/store'
-import { getHomeBanner} from '@/api/Home'
+// import store from '@/store'
+// import { getHomeBanner} from '@/api/Home'
 export default {
 	name: 'app',
 	components:{
 		HomeFooter
 	},
 	mounted() {
-		this.init()
+		// this.init()
 	},
 	data(){
 		return{
@@ -36,35 +36,9 @@ export default {
 		}
 	},
 	methods:{
-		async init(){
-			await this.$store.dispatch('Home/setCommonToken');
-			// token = token.content.user_token
-			this.joinScript()
-			
-		},
-		joinScript(){
-			let data ={
-			key:'baidu_tongji',
-			app_class:'mobile',
-			user_token:store.getters.common_token,
-			}
-			new Promise((resolve, reject) => {
-			getHomeBanner(data).then(response => {
-				resolve()
-				console_log(response)
-				if(response.state==0){
-					this.$message.error('joinScript接口错误');
-				}else if(response.state==1){
-					//empty
-					// let script = response.value
-					this.script= response.value
-					
-					
-				}
-				}).catch(error => {
-					reject(error)
-			})
-			})
+		async joinScript(){
+			const response = await this.$store.dispatch('Home/joinScript');
+			this.script = response.value
 		},
 	},
 	watch: {

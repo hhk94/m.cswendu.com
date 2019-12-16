@@ -46,6 +46,10 @@
 - 6.顶部提示封装到公共components
 - 7.新增download 下载需要填写form表单， animate制作动画
 
+#### 2019-12-16
+- 1.修复app.vue中插入百度统计代码，会发两次common_token请求的问题
+
+
 ## Project setup
 ```
 npm install
