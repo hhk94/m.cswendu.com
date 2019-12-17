@@ -16,7 +16,7 @@
 			</div>
 			<!-- @click="itemClick('/kefu')" -->
 			<div
-			
+			@click="itemClick('/kefu')"
 			:class="{'footer-item':true,'footer-item-center':true,choose:this.$store.state.Home.default_footer_choose=='/kefu'}">
 				<i class="iconfont icon-kefu"></i>
 				
@@ -49,8 +49,13 @@ export default {
 	},
 	methods:{
 		itemClick(item){
-			// this.$store.dispatch('Home/footerClick',item);	
-			this.$router.push({path:item}).catch(err => {err})
+			// this.$store.dispatch('Home/footerClick',item);
+				if(item == '/kefu'){
+					window.location.href = window.g.kf53
+				}else{
+					this.$router.push({path:item}).catch(err => {err})
+				}
+			
 		}
 	},
 	props:{

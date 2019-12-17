@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
@@ -60,6 +61,7 @@ import { console_log,getTime } from "@/utils/base.js"
 import store from '@/store'
 import {getNewsList} from '@/api/Base'
 import {getNewsDetail} from '@/api/NewsDetail'
+import { mapActions} from 'vuex'
 export default {
 	name:"HomeCourse",
 	components:{
@@ -92,11 +94,14 @@ export default {
 			timer: '',
 		}
 	},
-	// mounted(){
-	// 	this.init()
-	// },
+	mounted(){
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
+	},
 	activated() {
-		console_log('aS')
+		// console_log('aS')
 		this.init()
 	},
 	// beforeRouteEnter(to, from, next) {
@@ -134,6 +139,10 @@ export default {
 		// this.classNewsList = []
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		async init(){
 			if(!store.getters.common_token){
 				await this.$store.dispatch('Home/setCommonToken');
@@ -227,14 +236,9 @@ export default {
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
 				// console_log(top )
 				if(top>60){
-					// let opacity = 1
-					// opacity = opacity>1?1:opacity
-					// this.opacityStyle = {opacity:opacity,background: "#7abff7"}
-					// console_log(this.opacityStyle)
-					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
-					// this.showAbs = false
-					// this.opacityStyle = {background: "transparent"}
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

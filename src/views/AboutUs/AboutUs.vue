@@ -32,10 +32,12 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
 import TopNotice from '@/components/TopNotice'
 import BottomNotice from '@/components/BottomNotice'
+import { mapActions} from 'vuex'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 // import store from '@/store'
@@ -65,13 +67,56 @@ export default {
 	},
 	mounted() {
 		this.init()
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 
 			this.Scroll()
+			this.$nextTick(()=>{
+				this.updated()
+				
+			})
 		},
+		
+		updated () {
+			//解决better-scroll因为图片没有下载完导致的滚动条高度不够，无法浏览全部内容的问题。
+			//原因是better-scroll初始化是在dom加载后执行，此时图片没有下载完成，导致滚动条高度计算不准确。
+			//利用图片的complete属性进行判断，当所有图片下载完成后再对scroll重新计算。
+			let img = document.getElementsByTagName('img')
+			let count = 0
+			let length = img.length
+			console_log(img)
+			if(img){
+				if (length) {
+					let timer = setInterval(() => {
+						console_log(img[count])
+						console_log(length)
+						console_log(count)
+					if (count == length) {
+						// console_log('refresh')
+						this.scroll.refresh()
+						clearInterval(timer)
+					} else if (img[count]) {
+						if(img[count].complete){
+							count ++
+						}
+					}else if(!img[count]){
+						this.scroll.refresh()
+						clearInterval(timer)
+					}
+					}, 100)
+				}
+			}
+		}, 
 		Scroll(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
 				probeType:2,
@@ -91,11 +136,9 @@ export default {
 					let opacity = 1
 					opacity = opacity>1?1:opacity
 					this.opacityStyle = {opacity:opacity}
-					// console_log(this.opacityStyle)
-					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
-					// this.showAbs = false
-					// this.opacityStyle = {background: "transparent"}
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

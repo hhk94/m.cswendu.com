@@ -49,6 +49,11 @@
 #### 2019-12-16
 - 1.修复app.vue中插入百度统计代码，会发两次common_token请求的问题
 
+#### 2019-12-17
+- 1.新增回到顶部按钮
+- 2.增加按钮动画
+- 3.引入mapState、mapActions
+
 
 ## Project setup
 ```

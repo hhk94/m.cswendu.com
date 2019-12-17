@@ -8,32 +8,23 @@
 			<div>
 				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="spacial-center" >
-					<img src="@/assets/img/spacial/spacial-2/1.jpg" alt="">
-					<img src="@/assets/img/spacial/spacial-2/2.jpg" alt="">
-					<img src="@/assets/img/spacial/spacial-2/3.jpg" alt="">
-					<div class="table">
-						<h1 class="title">
-							<img src="@/assets/img/spacial/spacial-2/title.jpg" alt="">
-						</h1>
-						<div class="tabs">
-							<div 
-							@click="tabChange(index)"
-							v-for="(item,index) of tabs"
-							:key="index"
-							:class="{'active':isActive==item.name,'tabs-item':true}" 
-							>{{item.name}}</div>
-						</div>
-						<div class="table-center">
-							<img :src="imgSrc" alt="">
-						</div>
-					</div>
-					<!-- <img src="@/assets/img/spacial/spacial-2/4.jpg" alt=""> -->
-					<img src="@/assets/img/spacial/spacial-2/5.jpg" alt="">
-					<img src="@/assets/img/spacial/spacial-2/6.jpg" alt="">
-					<img src="@/assets/img/spacial/spacial-2/7.jpg" alt="">
+					
+					<img src="@/assets/img/spacial/spacial-3/1.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/2.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/3.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/4.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/5.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/6.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/7.jpg" alt="" @click="jump()">
+					<img src="@/assets/img/spacial/spacial-3/8.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/9.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/0.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/10.jpg" alt="">
+					<img src="@/assets/img/spacial/spacial-3/11.jpg" alt="">
+				
 					
 					<div class="form-body">
-						<h1 class="title"><img src="@/assets/img/spacial/spacial-2/title2.jpg" alt=""></h1>
+						<!-- <h1 class="title"><img src="@/assets/img/spacial/spacial-2/title2.jpg" alt=""></h1> -->
 						<div class="form">
 							<div class="center">
 								<div class="type">
@@ -98,26 +89,6 @@ export default {
 			phone:'',
 			qq:'',
 			timer: '',
-			tabs:[
-				{
-					'name':'全科系列',
-					'url':require('../../assets/img/spacial/spacial-2/qk.png')
-				},
-				{
-					'name':'公共课系列',
-					'url':require('../../assets/img/spacial/spacial-2/ggk.png')
-				},
-				{
-					'name':'专业课系列',
-					'url':require('../../assets/img/spacial/spacial-2/zyk.png')
-				},
-				{
-					'name':'199管综系列',
-					'url':require('../../assets/img/spacial/spacial-2/199.png')
-				},
-			],
-			isActive:'全科系列',
-			imgSrc:require('../../assets/img/spacial/spacial-2/qk.png'),
 			scroll:null
 		}
 	},
@@ -141,10 +112,8 @@ export default {
 		scrollToTop(){
 			this.scroll.scrollTo(0,0,1000) 
 		},
-		tabChange(index){
-			this.isActive = this.tabs[index].name
-			this.imgSrc = this.tabs[index].url
-			
+		jump(){
+			this.$router.push({path:'/hot-course',query:{}}).catch(err => {err})
 		},
 		async init(){
 			if(!store.getters.common_token){
@@ -257,7 +226,7 @@ export default {
 			let data ={
 				user_token:store.getters.common_token,
 				app_class:'mobile',
-				resource: 'mobile_spacial-彩虹卡',
+				resource: 'mobile_spacial-在职考研',
 				user_info: this.name+'#@'+this.qq,
 				user_phone: this.phone
 			}
@@ -333,7 +302,7 @@ export default {
 	}
 	.form-body{
 		overflow: hidden;
-		background: #54b784;
+		background: #228afd;
 		.form{
 			background: url("~@/assets/img/spacial/spacial-2/m-spacial-2-bg.png") no-repeat center center /contain;
 			width: 6.14rem;
@@ -362,7 +331,7 @@ export default {
 					width: 5.14rem;
 					height: 0.68rem;
 					line-height: 0.68rem;
-					background: #f6c952;
+					background: #228afd;
 					color: white;
 					font-size: 0.28rem;
 					text-align: center;

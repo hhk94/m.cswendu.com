@@ -9,6 +9,7 @@
 				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="comment-top"></div>
 				<div class="comment-center">
+					<div class="ask-btn" @click="ask()">我也说两句~</div>
 					<div 
 					v-for="item of commentList"
 					:key="item.course_comment_id"
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
@@ -48,6 +50,7 @@ import BottomNotice from '@/components/BottomNotice'
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
 import {getComment } from '@/api/Base'
+import { mapActions} from 'vuex'
 export default {
 	name:"HomeCourse",
 	components:{
@@ -75,8 +78,19 @@ export default {
 	},
 	mounted() {
 		this.init()
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
+		ask(){
+			window.location.href = window.g.kf53
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getComment()
@@ -101,11 +115,9 @@ export default {
 					let opacity = 1
 					opacity = opacity>1?1:opacity
 					this.opacityStyle = {opacity:opacity}
-					// console.log(this.opacityStyle)
-					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
-					// this.showAbs = false
-					// this.opacityStyle = {background: "transparent"}
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{
@@ -183,6 +195,16 @@ export default {
 		width: @design-center;
 		margin: 0.2rem auto 0 auto;
 		padding-bottom:0.5rem;
+		.ask-btn{
+			width: 2rem;
+			height: 0.6rem;
+			line-height: 0.6rem;
+			text-align: center;
+			color: white;
+			background: #2ca0ff;
+			margin: 0.2rem auto;
+			border-radius: 0.1rem;
+		}
 		.list-item{
 			position: relative;
 			border-bottom: 1px solid #e6e3df;

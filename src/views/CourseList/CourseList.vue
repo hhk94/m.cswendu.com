@@ -30,7 +30,7 @@
 								<h2>{{item.course_slogan}}</h2>
 								<h2>{{item.course_description}}</h2>
 							</div>
-							<a class="ask">在线咨询</a>
+							<a class="ask" @click.stop="ask()">在线咨询</a>
 						</div>
 					</div>
 					<bottom-notice :footer_bottom="footer_bottom"></bottom-notice>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
 import TopNotice from '@/components/TopNotice'
@@ -53,6 +54,7 @@ import HomeTopSwiper from '../Home/components/HomeTopSwiper'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
+import { mapActions} from 'vuex'
 export default {
 	name:"CourseList",
 	components:{
@@ -93,15 +95,27 @@ export default {
 	},
 	mounted() {
 		this.init()
-		
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
+		ask(){
+			window.location.href = window.g.kf53
+		},
 		goToSpacial(course_name){
 			console_log(course_name)
 			if(course_name =='集训营'){
-				this.$router.push({path:'/spacial-1',query:{}}).catch(err => {err})
+				this.$router.push({path:'/spacial/spacial-1',query:{}}).catch(err => {err})
 			}else if(course_name =='彩虹卡'){
-				this.$router.push({path:'/spacial-2',query:{}}).catch(err => {err})
+				this.$router.push({path:'/spacial/spacial-2',query:{}}).catch(err => {err})
+			}else if(course_name =='定制课'){
+				this.$router.push({path:'/spacial/spacial-3',query:{}}).catch(err => {err})
 			}
 		},
 		async init(){
@@ -145,8 +159,10 @@ export default {
 					// this.opacityStyle = {opacity}
 					this.opacityStyle = {opacity:opacity,background: "#7abff7"}
 					this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
 					this.showAbs = false
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

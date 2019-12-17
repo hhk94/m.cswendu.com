@@ -44,7 +44,7 @@
 </template>
 
 <script>
-
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
 //自定义公共js - own common css
@@ -52,6 +52,7 @@ import { console_log} from "@/utils/base.js"
 import store from '@/store'
 import BScroll from 'better-scroll'
 import {getTeacherDetail} from '@/api/TeacherDetail'
+import { mapActions} from 'vuex'
 export default {
 	name:"TeacherDetail",
 	components:{
@@ -83,8 +84,17 @@ export default {
 	activated() {
 		this.init()
 	},
+	mounted() {
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
+	},
 	methods:{
-		
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		Scroll(){
 			
 			this.scroll = new BScroll(this.$refs.wrapper,{
@@ -103,14 +113,9 @@ export default {
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
 				// console_log(this.alreadyTop)
 				if(top>60){
-					// let opacity = 1
-					// opacity = opacity>1?1:opacity
-					// this.opacityStyle = {opacity:opacity,background: "#7abff7"}
-					// console_log(this.opacityStyle)
-					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
-					// this.showAbs = false
-					// this.opacityStyle = {background: "transparent"}
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

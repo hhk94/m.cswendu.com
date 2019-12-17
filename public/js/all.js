@@ -1,3 +1,4 @@
 window.g = {
-	ApiUrl:'http://47.111.168.64:80/cswd/public/index.php/api/'
+	ApiUrl:'http://47.111.168.64:80/cswd/public/index.php/api/',
+	kf53:'https://ww16.53kf.com/webCompany.php?kf_sign=jQ4NTMTU3Ng3ODExMjQ3NTM1NDM3MDAyNzIyMjAxMTM=&arg=10220113&style=1&language=zh-cn&charset=GBK&kflist=off&kf=hunanwendou@126.com,469194491@qq.com,2335162674@qq.com,3167380266@qq.com&zdkf_type=1&lnk_overflow=0&callback_id6ds=10375350,10375356,10375357,10375358&referer=http%3A%2F%2Fcswendu.com%2Fhome.php%3Froute%3Dnav%26nav%3Dhome&keyword=http%3A%2F%2Fwww.cswendu.com%2Fdetail%2Fdetail-rainbow-card.php%3Froute%3Dnav%26nav%3D2021&tfrom=1&tpl=crystal_blue&uid=bd481d38c171c875893913f51f06c305&is_group=&is_group=&timeStamp=1576485956820&ucust_id='
 }

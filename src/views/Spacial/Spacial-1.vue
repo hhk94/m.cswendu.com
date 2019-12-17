@@ -45,7 +45,7 @@
 </template>
 
 <script>
-
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
 //自定义公共js - own common css
@@ -53,6 +53,7 @@ import { console_log} from "@/utils/base.js"
 import store from '@/store'
 import BScroll from 'better-scroll'
 import {submit} from '@/api/User'
+import { mapActions} from 'vuex'
 export default {
 	name:"Spacial1",
 	components:{
@@ -78,13 +79,29 @@ export default {
 			phone:'',
 			qq:'',
 			timer: '',
+			scroll:null
 		}
 	},
 	activated() {
 		this.init()
 		
 	},
+	mounted() {
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
+	},
+	watch:{
+		$route(){
+			this.scroll.scrollTo(0,0,1000) 
+		}
+	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		async init(){
 			if(!store.getters.common_token){
 				await this.$store.dispatch('Home/setCommonToken');
@@ -92,6 +109,7 @@ export default {
 			this.Scroll()
 			this.$nextTick(()=>{
 				this.updated()
+				
 			})
 			
 		},
@@ -145,9 +163,9 @@ export default {
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
 				// console_log(this.alreadyTop)
 				if(top>60){
-					//empty
+					this.toTopShowOrHidden(true)
 				}else{
-					//empty
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

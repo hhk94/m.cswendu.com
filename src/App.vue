@@ -1,6 +1,14 @@
 <template>
 
   <div id="app">
+	<transition
+	enter-active-class="animated bounceInDown"
+	leave-active-class="animated bounceOutLeft"
+	:durantion="400"
+	>
+		<div class="top-btn" @click="toTop()" v-show="this.show_hidden">Top</div>
+		
+	</transition>
 	<transition :name="transitionName" >	
 	<keep-alive>
 		
@@ -10,6 +18,7 @@
 	</keep-alive>
 	</transition>
 		<home-footer></home-footer>	
+		
 		<div v-html="this.script" class="baidu"></div>
   </div>
 
@@ -19,8 +28,9 @@
 //自定义公共js - own common css
 // import { console_log } from "@/utils/base.js"
 import HomeFooter from '@/components/Footer'
-// import store from '@/store'
+import Utils from '@/utils/Utils.js'
 // import { getHomeBanner} from '@/api/Home'
+import { mapState} from 'vuex'
 export default {
 	name: 'app',
 	components:{
@@ -28,6 +38,7 @@ export default {
 	},
 	mounted() {
 		// this.init()
+		console.log(this.show_hidden)
 	},
 	data(){
 		return{
@@ -35,7 +46,16 @@ export default {
 			transitionName:''
 		}
 	},
+	computed:{
+		...mapState({
+			//"keyword":"count"    //count可以显示
+			"show_hidden": state => state.Home.show_hidden
+		})
+	},
 	methods:{
+		toTop() {
+			Utils.$emit('toTop');
+		},
 		async joinScript(){
 			const response = await this.$store.dispatch('Home/joinScript');
 			this.script = response.value
@@ -57,6 +77,20 @@ export default {
 </script>
 
 <style lang="less">
+.top-btn{
+	position: fixed;
+	bottom: 1rem;
+	right: 0.1rem;
+	background: rgba(0,0,0,0.3);
+	height: 1rem;
+	width: 0.8rem;
+	z-index: 9999;
+	color: 0.3rem;
+	text-align: center;
+	line-height: 1rem;
+	color: white;
+	border-radius: 0.2rem;
+}
 .router-view{
 position: absolute;
 }

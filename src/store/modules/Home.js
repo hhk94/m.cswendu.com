@@ -9,7 +9,8 @@ const default_footer_choose = localStorage.getItem('DEFAULT_FOOTER_CHOOSE')?loca
 const state = {
 	common_token:'',
 	default_footer_choose:default_footer_choose,
-	baidu_script:''
+	baidu_script:'',
+	show_hidden:false
   // introduction: '',
   
 }
@@ -23,6 +24,9 @@ const mutations = {
 	},
 	BAIDU_SCRIPT: (state, item) => {
 		state.baidu_script = item
+	},
+	TO_TOP_SHOW_HIDDEN: (state, item) => {
+		state.show_hidden = item
 	},
 }
 
@@ -78,7 +82,12 @@ const actions = {
 		console_log(item)
 		commit('DEFAULT_FOOTER_CHOOSE', item)
 		localStorage.setItem('DEFAULT_FOOTER_CHOOSE',item)
-	}
+	},
+	toTopShowOrHidden({ commit },item){
+		// console_log(item)
+		// console_log(commit)
+		commit('TO_TOP_SHOW_HIDDEN', item)
+	},
 }
 
 export default {

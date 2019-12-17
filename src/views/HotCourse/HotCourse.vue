@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
@@ -41,6 +42,7 @@ import BottomNotice from '@/components/BottomNotice'
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
 import {getCourseClass,getCourseList } from '@/api/Base'
+import { mapActions} from 'vuex'
 export default {
 	name:"HomeCourse",
 	components:{
@@ -66,8 +68,16 @@ export default {
 	},
 	mounted() {
 		this.init()
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		async init(){
 			await this.$store.dispatch('Home/setCommonToken');
 			this.getCourseList()
@@ -91,17 +101,21 @@ export default {
 					this.opacityStyle = {opacity:opacity}
 					// console.log(this.opacityStyle)
 					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
 					// this.showAbs = false
+					this.toTopShowOrHidden(false)
 				}
 			})
 		},
 		goToSpacial(course_name){
 			console_log(course_name)
 			if(course_name =='2021全年集训营'){
-				this.$router.push({path:'/spacial-1',query:{}}).catch(err => {err})
+				this.$router.push({path:'/spacial/spacial-1',query:{}}).catch(err => {err})
 			}else if(course_name =='2021高端彩虹卡'){
-				this.$router.push({path:'/spacial-2',query:{}}).catch(err => {err})
+				this.$router.push({path:'/spacial/spacial-2',query:{}}).catch(err => {err})
+			}else{
+				this.$router.push({path:'/spacial/spacial-3',query:{}}).catch(err => {err})
 			}
 		},
 		//获取新闻分类

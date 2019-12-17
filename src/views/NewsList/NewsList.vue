@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import DefaultHeader from '@/components/DefaultHeader'
 import TopNotice from '@/components/TopNotice'
@@ -43,6 +44,7 @@ import HomeTopSwiper from '../Home/components/HomeTopSwiper'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
+import { mapActions} from 'vuex'
 export default {
 	name:"NewsList",
 	components:{
@@ -73,7 +75,10 @@ export default {
 	},
 	mounted() {
 		this.init()
-		
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
 	},
 	activated() {
 		// console.log('swiper')
@@ -83,6 +88,10 @@ export default {
 		this.isKeep = false
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		goToDetail(id,class_id_array){
 			
 			this.$router.push({path:'/news-detail',query:{news_info_id:id,class_id_array:class_id_array}}).catch(err => {err})
@@ -114,8 +123,10 @@ export default {
 					// this.opacityStyle = {opacity}
 					this.opacityStyle = {opacity:opacity}
 					this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
 					this.showAbs = false
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

@@ -17,6 +17,7 @@
 							<span>{{this.ask_info.tag_name}}</span>
 						</div>
 					</div>
+					<div class="ask-btn" @click="ask()">我要提问</div>
 					<div class="summary" v-show="JSON.stringify(this.best_answer) != '{}'">
 						<div class="img-box"><img src="@/assets/img/m-ask-detail-1.png" alt=""></div>
 						<div class="author">
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
@@ -65,7 +67,7 @@ import BottomNotice from '@/components/BottomNotice'
 //自定义公共js - own common css
 import { console_log,getTime } from "@/utils/base.js"
 import store from '@/store'
-
+import { mapActions} from 'vuex'
 import {getAskDetail,getAnswerList} from '@/api/AskDetail'
 export default {
 	name:"HomeCourse",
@@ -99,9 +101,12 @@ export default {
 			best_answer:{}
 		}
 	},
-	// mounted(){
-	// 	this.init()
-	// },
+	mounted(){
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
+	},
 	activated(){
 		this.init()
 		console_log('activated')
@@ -113,10 +118,17 @@ export default {
 		
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		getTime(time){
 			
 			return getTime(time)
 			
+		},
+		ask(){
+			window.location.href = window.g.kf53
 		},
 		async init(){
 			
@@ -151,14 +163,9 @@ export default {
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
 				// console_log(this.alreadyTop)
 				if(top>60){
-					// let opacity = 1
-					// opacity = opacity>1?1:opacity
-					// this.opacityStyle = {opacity:opacity,background: "#7abff7"}
-					// console_log(this.opacityStyle)
-					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
-					// this.showAbs = false
-					// this.opacityStyle = {background: "transparent"}
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{
@@ -275,6 +282,17 @@ export default {
 					border-radius: 0.05rem;
 				}
 			}
+		}
+		.ask-btn{
+			background: rgb(6,209,145);
+			width: 1.6rem;
+			height: 0.6rem;
+			line-height: 0.6rem;
+			color: white;
+			font-size: 0.32rem;
+			margin: 0.1rem auto;
+			text-align: center;
+			border-radius: 0.1rem;
 		}
 		.summary{
 			border-bottom: 1px solid #e6e3df;

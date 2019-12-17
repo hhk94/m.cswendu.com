@@ -43,10 +43,12 @@ import HomeDefaultHeader from '@/components/DefaultHeader'
 import TopNotice from '@/components/TopNotice'
 import HomeFooter from '@/components/Footer'
 import { getHomeBanner,getHotTeacher} from '@/api/Home'
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import {getNewsClass,getNewsList,getQuestionList,getCourseClass,getCourseList,getComment } from '@/api/Base'
 //自定义公共js - own common css
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
+import { mapActions} from 'vuex'
 export default {
 	name:"Home",
 	components:{
@@ -102,9 +104,18 @@ export default {
 	},
 	mounted() {
 		this.init()
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
+		
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
 		
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		async init(){	
 			await this.$store.dispatch('Home/setCommonToken');
 			this.tokenOver = true
@@ -141,8 +152,10 @@ export default {
 					opacity = opacity>1?1:opacity
 					this.opacityStyle = {opacity}
 					this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
 					this.showAbs = false
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

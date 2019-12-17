@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import Utils from '@/utils/Utils.js'//和app.vue通信 点击回到顶部
 import BScroll from 'better-scroll'
 import BackHeader from '@/components/BackHeader'
 import TopNotice from '@/components/TopNotice'
@@ -52,6 +53,7 @@ import BottomNotice from '@/components/BottomNotice'
 import { console_log } from "@/utils/base.js"
 import store from '@/store'
 import {getTeacherClass,getTeacherList} from '@/api/Base'
+import { mapActions} from 'vuex'
 export default {
 	name:"HomeCourse",
 	components:{
@@ -83,8 +85,16 @@ export default {
 	},
 	mounted() {
 		this.init()
+		var that = this;
+		Utils.$on('toTop', function () {
+		that.scrollToTop();
+		})
 	},
 	methods:{
+		...mapActions("Home",['toTopShowOrHidden']),
+		scrollToTop(){
+			this.scroll.scrollTo(0,0,1000) 
+		},
 		goToDetail(id){
 			this.$router.push({path:'/teacher-detail',query:{teacher_id:id}}).catch(err => {err})
 		},
@@ -113,11 +123,9 @@ export default {
 					let opacity = 1
 					opacity = opacity>1?1:opacity
 					this.opacityStyle = {opacity:opacity}
-					// console_log(this.opacityStyle)
-					// this.showAbs = true
+					this.toTopShowOrHidden(true)
 				}else{
-					// this.showAbs = false
-					// this.opacityStyle = {background: "transparent"}
+					this.toTopShowOrHidden(false)
 				}
 			})
 			this.scroll.on("pullingUp",()=>{

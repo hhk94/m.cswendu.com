@@ -123,22 +123,7 @@ export default new Router({
 			index:3
 		},  
 	},
-	{/*专题页1*/
-		path: "/spacial-1",
-		name: "Spacial-1",
-		component:() => import( './views/Spacial/Spacial-1.vue'),
-		meta:{
-			index:3
-		},  
-	},
-	{/*专题页1*/
-		path: "/spacial-2",
-		name: "Spacial-2",
-		component:() => import( './views/Spacial/Spacial-2.vue'),
-		meta:{
-			index:3
-		},  
-	},
+	
 	{/*下载列表*/
 		path: "/download-list",
 		name: "DownloadList",
@@ -155,7 +140,34 @@ export default new Router({
 			index:3
 		},  
 	},
-	
+	{
+	/*专题页*/
+		path: "/spacial",
+		name: "Spacial",
+		component:() => import( './views/Spacial/Spacial.vue'),
+		meta:{
+			index:3
+		},
+		children:[
+			{
+				// 当 /spacial/spacial-1 匹配成功，
+				// spacial-1会被渲染在 spacial的 <router-view> 中
+				path: "spacial-1",
+				name: "Spacial-1",
+				component:() => import( './views/Spacial/Spacial-1.vue'),
+			},
+			{
+				path: "spacial-2",
+				name: "Spacial-2",
+				component:() => import( './views/Spacial/Spacial-2.vue'),
+			},
+			{
+				path: "spacial-3",
+				name: "Spacial-3",
+				component:() => import( './views/Spacial/Spacial-3.vue'),
+			},
+		]
+	},
   ]
 });
 

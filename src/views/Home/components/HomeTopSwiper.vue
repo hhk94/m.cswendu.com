@@ -72,9 +72,9 @@ export default {
 		this.swiper.on('tap', function () {
 			// _this.goToDetail(this.clickedSlide.getAttribute('data_index'));//调用你自定义的方法
 			if(this.clickedSlide.getAttribute('data_index')=='qn'){
-				_this.$router.push({path:'/spacial-1'}).catch(err => {err})
-			}else{
-				_this.$router.push({path:'/spacial-2'}).catch(err => {err})
+				_this.$router.push({path:'/spacial/spacial-1'}).catch(err => {err})
+			}else if(this.clickedSlide.getAttribute('data_index')=='chk'){
+				_this.$router.push({path:'/spacial/spacial-2'}).catch(err => {err})
 			}
 		})
 	}
