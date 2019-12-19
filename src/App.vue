@@ -71,6 +71,21 @@ export default {
 			} else{
 				this.transitionName = 'slide-right';
 			}
+			
+			// const agent = navigator.userAgent
+			
+			// // 判断微信浏览器
+			// // const isWeixin =  !!/MicroMessenger/i.test(agent);
+			// const isiOS = !!agent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) // ios终端
+			// if (isiOS){
+			// 	// 不会刷新浏览器，只是让微信浏览器同步当前url
+			// 	// eslint-disable-next-line
+			// 	// window.location.assign( '/'+to.fullPath)
+			// 	window.location.href = window.location.href
+			// 	console.log('a')
+			// }
+			
+			
 		}
 	}
 }

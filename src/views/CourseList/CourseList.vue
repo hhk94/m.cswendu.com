@@ -110,9 +110,9 @@ export default {
 		},
 		goToSpacial(course_name){
 			console_log(course_name)
-			if(course_name =='集训营'){
+			if(course_name =='鹰飞集训营'){
 				this.$router.push({path:'/spacial/spacial-1',query:{}}).catch(err => {err})
-			}else if(course_name =='彩虹卡'){
+			}else if(course_name =='高端彩虹卡'){
 				this.$router.push({path:'/spacial/spacial-2',query:{}}).catch(err => {err})
 			}else if(course_name =='定制课'){
 				this.$router.push({path:'/spacial/spacial-3',query:{}}).catch(err => {err})
@@ -292,7 +292,7 @@ export default {
 		margin-top: 0.7rem;;
 		padding-bottom: 0.5rem;
 		.tabs{
-			width: 63.2%;
+			width: 82.2%;
 			margin: 0.3rem auto 0.14rem auto;
 			overflow: hidden;
 			display: flex;

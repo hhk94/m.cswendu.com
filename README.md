@@ -16,6 +16,7 @@
 - 11.fastclick处理点击事件
 - 12.vue-baidu-map 实现地图功能
 - 13.animate 处理动画效果
+- 14.接入wx-sdk制作微信分享，路由守卫统一处理
 
 
 #### 页面参数定义
@@ -53,6 +54,9 @@
 - 1.新增回到顶部按钮
 - 2.增加按钮动画
 - 3.引入mapState、mapActions
+
+#### 2019-12-19
+- 1.接入wx-sdk 专题页制作分享
 
 
 ## Project setup

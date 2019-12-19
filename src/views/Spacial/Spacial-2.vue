@@ -73,6 +73,7 @@ import store from '@/store'
 import BScroll from 'better-scroll'
 import {submit} from '@/api/User'
 import { mapActions} from 'vuex'
+// import {shareWx} from '@/api/Base'
 export default {
 	name:"Spacial2",
 	components:{
@@ -152,7 +153,13 @@ export default {
 			}
 			this.Scroll()
 			this.updated()
+			// this.shareWx()
 		},
+		// shareWx(){
+		// 	window.g.title = '文都考研【官网】彩虹卡火热招生中'
+		// 	window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+		// 	shareWx()
+		// },
 		updated () {
 			//解决better-scroll因为图片没有下载完导致的滚动条高度不够，无法浏览全部内容的问题。
 			//原因是better-scroll初始化是在dom加载后执行，此时图片没有下载完成，导致滚动条高度计算不准确。

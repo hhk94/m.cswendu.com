@@ -1,5 +1,7 @@
 import request from '@/utils/request'
+import { console_log} from "@/utils/base.js"
 import qs from 'qs'
+import wx from 'weixin-js-sdk';
 //获取新闻分类
 export function getNewsClass(data) {
 	data = qs.stringify(data)
@@ -95,4 +97,86 @@ export function getCampusList(data) {
 		method: 'post',
 		data
 	})
+}
+
+
+//获取微信配置参数
+export function WxParams(data) {
+	data = qs.stringify(data)
+	return request({
+		url: '/enhance/get_wx_share_data',
+		method: 'post',
+		data
+	})
+}
+
+export function shareWx(){
+	let url = encodeURI(window.location.href);
+	let data ={
+		url:url.split("#")[0]
+	}
+	console_log(window)
+	// console_log(url.split("#")[0])
+	new Promise((resolve, reject) => {
+		WxParams(data).then(response => {
+			resolve(response)
+			// console_log(response)
+			if(response.state==0){
+				this.$message.error('Wx接口错误');
+			}else if(response.state==1){
+				//empty
+				let params = {
+					title: window.g.title, // 分享标题
+					desc: window.g.description, // 分享描述
+					link:url.split("#")[0]+"#"+url.split("#")[1], // 分享链接
+					imgUrl: window.g.WxShareImgUrl, // 分享图标
+				}
+				WxConfig(response.content,params)
+			}
+			}).catch(error => {
+				reject(error)
+		})
+	})
+}
+//配置微信config
+export function WxConfig(res,data) {
+	let appid = res.appid;
+	let timestamp = res.timestamp*1;
+	let nonceStr = res.nonceStr;
+	let signature = res.signature;
+	wx.config({
+		debug: false, // 是否开启调试
+		appId: appid,
+		timestamp: timestamp,
+		nonceStr: nonceStr,
+		signature: signature,
+		jsApiList: [
+			"checkJsApi",
+			"onMenuShareTimeline",
+			"onMenuShareAppMessage",
+			"onMenuShareQQ",
+			"onMenuShareWeibo",
+		]
+	});
+	console.log(data)
+	wx.ready(function () {
+		let shareData = {
+		title: data.title,
+		desc: data.desc,
+		link: data.link,
+		imgUrl: data.imgUrl,
+		success: function () {
+			console.log("分享成功");
+		},
+		cancel: function () {
+			console.log("分享取消");
+		}
+		};
+
+		wx.onMenuShareAppMessage(shareData);
+		wx.onMenuShareTimeline(shareData);
+		wx.onMenuShareQQ(shareData);
+		wx.onMenuShareWeibo(shareData);
+	
+	});
 }

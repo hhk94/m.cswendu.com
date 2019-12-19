@@ -32,7 +32,7 @@ Vue.use(Vuex)
 import YDUI from 'vue-ydui'; 
 import 'vue-ydui/dist/ydui.rem.css';
 Vue.use(YDUI);
-
+import {shareWx} from '@/api/Base'
 
 import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
@@ -42,31 +42,34 @@ Vue.use(BaiduMap, {
 
 //全局路由守卫 - 进入任何页面都获取一次token - 后端要求
 router.beforeEach((to, from, next) => {
+	console_log('to.path')
 	console_log(to.path)
 	console_log('此时执行')
 	storeTotal.dispatch('Home/footerClick',to.path);	
 	//进入页面就获取公共token
+	if(to.path =='/spacial/spacial-1'){
+		window.g.title = '文都考研【官网】全年集训营火热招生中'
+		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+	}else if(to.path =='/spacial/spacial-2'){
+		window.g.title = '文都考研【官网】彩虹卡火热招生中'
+		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+	}else if(to.path =='/spacial/spacial-3'){
+		window.g.title = '文都考研【官网】在职考研火热进行中'
+		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+	}else if(to.path =='/shouye'){
+		window.g.title = '文都考研-【官网】文都考研_考试专家助你飞速成功'
+		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+	}else if(to.path =='/course-list'){
+		window.g.title = '文都考研-【官网】课程列表'
+		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+	}else if(to.path =='/news-list'){
+		window.g.title = '文都考研-【官网】资讯列表'
+		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+	}
 	
-	// let page_url = window.location.href;
-	// let data ={
-	// 	"app_class": "mobile",
-	// 	"user_token": page_url
-	// }	 
-	// // 获取commonToken
-	// new Promise((resolve, reject) => {
-	// 	setCommonToken(data).then(response => {
-	// 		resolve()
-	// 		console_log(response)
-	// 		setLocalStorageCommonToken(response.content.user_token)
-			
-	// 		console_log('token设置完成')
-	// 		}).catch(error => {
-	// 			reject(error)
-	// 	})
-	// })
-	if (to.path){
-		next()
-	} 
+	shareWx()
+	
+	
 	// if (to.path === "/course"){
 	// 	next({
 	// 		path: '/course'
@@ -74,7 +77,7 @@ router.beforeEach((to, from, next) => {
 	// } else {
 	// 	next()
 	// }
-	
+	next()
 });
 
 Vue.config.productionTip = false
