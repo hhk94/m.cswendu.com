@@ -8,7 +8,7 @@
 			<div>
 				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="about-us-top"></div>
-				<div class="about-us-center">
+				<div class="about-us-center" >
 					<div class="img-box"><img src="@/assets/img/m-about-us-1.jpg" alt=""></div>
 					<div class="img-box"><img src="@/assets/img/m-about-us-2.jpg" alt=""></div>
 					<div class="img-box"><img src="@/assets/img/m-about-us-3.jpg" alt=""></div>

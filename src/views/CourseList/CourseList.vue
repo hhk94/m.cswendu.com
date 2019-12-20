@@ -24,7 +24,7 @@
 						v-for="item of courseList"
 						:key="item.course_id"
 						class="list-item">
-							<div class="img-box"><img :src="item.course_cover" alt=""></div>
+							<div class="img-box"><img  v-lazy="item.course_cover" alt=""></div>
 							<div class="word">
 								<h1>{{item.course_name}}</h1>
 								<h2>{{item.course_slogan}}</h2>

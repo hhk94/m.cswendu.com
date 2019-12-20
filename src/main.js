@@ -20,7 +20,6 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 //处理点击延迟 - fastclick
 import fastClick from 'fastclick'
 fastClick.attach(document.body)
-
 //animate
 import animate from 'animate.css'
 Vue.use(animate)
@@ -32,14 +31,23 @@ Vue.use(Vuex)
 import YDUI from 'vue-ydui'; 
 import 'vue-ydui/dist/ydui.rem.css';
 Vue.use(YDUI);
+/*wx-sdk*/
 import {shareWx} from '@/api/Base'
-
+/*百度地图*/
 import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: '0DLYDIjeyUdprzjIGOwnAm2xmKjZdu7z'
 })
-
+/*懒加载*/
+import VueLazyload from 'vue-lazyload'
+// or with options
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'dist/error.png',
+  loading: 'dist/loading.gif',
+  attempt: 1
+})
 //全局路由守卫 - 进入任何页面都获取一次token - 后端要求
 router.beforeEach((to, from, next) => {
 	console_log('to.path')

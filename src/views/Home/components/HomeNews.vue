@@ -11,7 +11,7 @@
 				@click="goToDetail(item.news_info_id,item.news_class_id_array)"
 				v-for="item of allNewsList"
 				:key="item.news_info_id">
-					<div class="item-pic"><img :src="item.cover" alt=""></div>
+					<div class="item-pic"><img  v-lazy="item.cover" alt=""></div>
 					<div class="word">
 						<h1>{{item.title}}</h1>
 						<div>
@@ -25,37 +25,7 @@
 		</div>
 		<span class="last-notice" v-show="this.footer_bottom">我是有底线的！~</span>
 	</div>
-	<!-- <div class="home-news">
-		<div class="home-news-center">
-			<h1 class="type-title">
-				考研资讯
-				<span class="more"><img src="@/assets/img/m-home-more.png" alt=""></span>
-			</h1>
-		</div>
-		<yd-infinitescroll :callback="getNews" ref="infinitescrollDemo" :distance="px" > 
-			
-			<div slot="list" class="list-center" >
-				<div v-for="(item, key) of newsList" 
-				:key="key" 
-				class="list-item">
-					<div class="item-pic"><img :src="item.cover" alt=""></div>
-					<div class="word">
-						<h1>{{item.title}}</h1>
-						<div>
-							<span>{{item.author}}</span>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<span slot="doneTip">我是有底线的！~</span>
-			
-			
-			<span slot="loadingTip" class="load">加载中</span>
-		</yd-infinitescroll>
-		<span v-show="this.footer_bottom">我是有底线的！~</span>
-	</div> -->
+
 	
 	
 

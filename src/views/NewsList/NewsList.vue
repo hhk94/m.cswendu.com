@@ -21,7 +21,7 @@
 								<h1>{{item.title}}</h1>
 								<span>{{item.author}}</span>
 							</div>
-							<div class="img-pic"><img :src="item.cover" alt=""></div>
+							<div class="img-pic"><img  v-lazy="item.cover" alt=""></div>
 						</div>
 					</div>
 					<bottom-notice :footer_bottom="footer_bottom"></bottom-notice>

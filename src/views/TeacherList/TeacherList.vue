@@ -28,7 +28,7 @@
 						:key="item.teacher_id"
 						
 						class="list-item">
-							<div class="img-box"><img :src="item.teacher_cover" alt=""></div>
+							<div class="img-box"><img  v-lazy="item.teacher_cover" alt=""></div>
 							<p>{{item.teacher_name}}</p>
 						</div>
 					</div>
