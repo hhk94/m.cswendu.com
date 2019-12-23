@@ -33,7 +33,7 @@
 										<h1>{{item.title}}</h1>
 										<span>{{item.author}}</span>
 									</div>
-									<div class="img-pic"><img :src="item.cover" alt=""></div>
+									<div class="img-pic"><img :src="item.http_img" alt=""></div>
 								</div>
 							</div>
 						</div>	
@@ -294,6 +294,11 @@ export default {
 						this.$message.error('getClassNews接口错误');
 					}else if(response.state==1){
 						const _list = response.content
+						_list.forEach((item,index)=>{
+							if(item.cover!=''){
+								_list[index].http_img = window.g.http+item.cover
+							}
+						})
 						this.classNewsList = _list;
 					
 						this.$nextTick(() => {

@@ -27,7 +27,7 @@ function startLoading() {
 		target:"html",
 		lock: true,
 		text: '加载中...',
-		spinner: 'el-icon-loading',
+		// spinner: 'el-icon-loading',
 		background: 'rgba(0, 0, 0, 0.7)'
 	});
 }

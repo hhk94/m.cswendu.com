@@ -17,7 +17,7 @@
 				:key="index"
 				>
 					<a >
-						<img :src="item.img" alt="">
+						<img :src="item.http_img" alt="">
 					</a>
 					
 				</swiper-slide>
@@ -68,6 +68,7 @@ export default {
 	},
 
 	mounted() {
+		// console.log(this.bannerList)
 		let _this = this;
 		this.swiper.on('tap', function () {
 			// _this.goToDetail(this.clickedSlide.getAttribute('data_index'));//调用你自定义的方法

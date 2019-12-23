@@ -44,8 +44,8 @@ import VueLazyload from 'vue-lazyload'
 // or with options
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: 'dist/error.png',
-  loading: 'dist/loading.gif',
+  error: require('./assets/img/error.gif'),
+  loading: require('./assets/img/loading.gif'),
   attempt: 1
 })
 //全局路由守卫 - 进入任何页面都获取一次token - 后端要求

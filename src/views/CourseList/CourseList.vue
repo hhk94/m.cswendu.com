@@ -24,7 +24,7 @@
 						v-for="item of courseList"
 						:key="item.course_id"
 						class="list-item">
-							<div class="img-box"><img  v-lazy="item.course_cover" alt=""></div>
+							<div class="img-box"><img  v-lazy="item.http_img" alt=""></div>
 							<div class="word">
 								<h1>{{item.course_name}}</h1>
 								<h2>{{item.course_slogan}}</h2>
@@ -196,6 +196,11 @@ export default {
 						response.content.length==0?
 						this.$message.error('getHomeBanner数据为空'):
 						this.bannerList = response.content
+						this.bannerList.forEach((item,index)=>{
+							if(item.img!=''){
+								this.bannerList[index].http_img = window.g.http+item.img
+							}
+						})
 						if(this.bannerList.length!=0){
 							this.hasSwiper = true
 						}else{
@@ -252,6 +257,11 @@ export default {
 						this.$message.error('getCourseList接口错误');
 					}else if(response.state==1){
 						const _list = response.content
+						_list.forEach((item,index)=>{
+							if(item.course_cover!=''){
+								_list[index].http_img = window.g.http+item.course_cover
+							}
+						})
 						this.courseList = [...this.courseList, ..._list];
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll

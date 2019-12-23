@@ -14,7 +14,7 @@
 				v-for="item of hotTeacherList"
 				:key="item.teacher_id">
 					<div class="teacher-item" >
-						<div class="item-img"><img :src="item.teacher_cover" alt=""></div>
+						<div class="item-img"><img :src="item.http_img" alt=""></div>
 						<div class="word">
 							<h1>{{item.teacher_name}}
 							<span>{{item.class_name}}</span>

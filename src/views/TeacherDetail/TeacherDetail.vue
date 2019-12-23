@@ -9,7 +9,7 @@
 				<top-notice :alreadyTop="alreadyTop"></top-notice>
 				<div class="teacher-center">
 					<div class="pic-and-word">
-						<div class="pic"><img :src="this.teacher_info.teacher_cover" alt=""></div>
+						<div class="pic"><img :src="this.teacher_info.http_img" alt=""></div>
 						<div class="word">
 							<h1>{{this.teacher_info.teacher_name}}</h1>
 							
@@ -156,7 +156,8 @@ export default {
 					}else if(response.state==1){
 						
 						this.teacher_info = response.content
-						this.background = {background:"url("+this.teacher_info.teacher_cover+") no-repeat center center /cover" },
+						this.teacher_info.http_img = window.g.http+this.teacher_info.teacher_cover
+						this.background = {background:"url("+this.teacher_info.http_img+") no-repeat center center /cover" },
 						this.teacher_books = response.content.teacher_books
 						this.teacher_grading = response.content.teacher_grading
 						this.teacher_lecture = response.content.teacher_lecture

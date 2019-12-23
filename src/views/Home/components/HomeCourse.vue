@@ -20,7 +20,7 @@
 				v-for="(item) of courseList"
 				:key="item.course_id">
 					<div class="course-img">
-						<img :src="item.course_cover" alt="">
+						<img :src="item.http_img" alt="">
 					</div>
 					<div class="word">
 						<h1>{{item.course_name}}</h1>

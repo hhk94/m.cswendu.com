@@ -11,7 +11,7 @@
 				@click="goToDetail(item.news_info_id,item.news_class_id_array)"
 				v-for="item of allNewsList"
 				:key="item.news_info_id">
-					<div class="item-pic"><img  v-lazy="item.cover" alt=""></div>
+					<div class="item-pic"><img  v-lazy="item.http_img" alt=""></div>
 					<div class="word">
 						<h1>{{item.title}}</h1>
 						<div>

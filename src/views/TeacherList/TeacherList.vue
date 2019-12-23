@@ -28,7 +28,7 @@
 						:key="item.teacher_id"
 						
 						class="list-item">
-							<div class="img-box"><img  v-lazy="item.teacher_cover" alt=""></div>
+							<div class="img-box"><img  v-lazy="item.http_img" alt=""></div>
 							<p>{{item.teacher_name}}</p>
 						</div>
 					</div>
@@ -191,6 +191,11 @@ export default {
 						this.$message.error('getCourseList接口错误');
 					}else if(response.state==1){
 						const _list = response.content
+						_list.forEach((item,index)=>{
+							if(item.teacher_cover!=''){
+								_list[index].http_img = window.g.http+item.teacher_cover
+							}
+						})
 						this.teacherList = [...this.teacherList, ..._list];
 						this.$nextTick(() => {
 							this.scroll.refresh(); // DOM 结构发生变化后，重新初始化BScroll

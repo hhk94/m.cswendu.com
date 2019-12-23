@@ -1,10 +1,12 @@
 <template>
 	<div class="home-hot">
 		<div class="hot-tab">
-			<div  :class="{'active':isActive=='zixun','hot-tab-item':true}" @click="tabChange('zixun')">考研资讯</div>
 			<div :class="{'active':isActive=='shequ','hot-tab-item':true}" @click="tabChange('shequ')">考研社区</div>
+			<div  :class="{'active':isActive=='zixun','hot-tab-item':true}" @click="tabChange('zixun')">考研资讯</div>
+			
 		</div>
 		<div class="hot-center">
+			
 			<div class="center-body" v-if="isActive=='zixun'">
 				<swiper :options="swiperOption">
 					<swiper-slide 
@@ -65,7 +67,7 @@ export default {
 				}
 				this.pages[page].push(item)
 			})
-			this.isActive = 'zixun'
+			this.isActive = 'shequ'
 			console_log(this.pages)
 		},
 	},

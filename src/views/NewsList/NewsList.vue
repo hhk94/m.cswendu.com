@@ -21,7 +21,7 @@
 								<h1>{{item.title}}</h1>
 								<span>{{item.author}}</span>
 							</div>
-							<div class="img-pic"><img  v-lazy="item.cover" alt=""></div>
+							<div class="img-pic"><img  v-lazy="item.http_img" alt=""></div>
 						</div>
 					</div>
 					<bottom-notice :footer_bottom="footer_bottom"></bottom-notice>
@@ -160,6 +160,11 @@ export default {
 						response.content.length==0?
 						this.$message.error('getHomeBanner数据为空'):
 						this.bannerList = response.content
+						this.bannerList.forEach((item,index)=>{
+							if(item.img!=''){
+								this.bannerList[index].http_img = window.g.http+item.img
+							}
+						})
 						if(this.bannerList.length!=0){
 							this.hasSwiper = true
 						}else{
@@ -187,6 +192,11 @@ export default {
 						this.$message.error('getNews接口错误');
 					}else if(response.state==1){
 						const _list = response.content
+						_list.forEach((item,index)=>{
+							if(item.cover!=''){
+								_list[index].http_img = window.g.http+item.cover
+							}
+						})
 						this.allNewsList = [...this.allNewsList, ..._list];
 					
 						this.$nextTick(() => {

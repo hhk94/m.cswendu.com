@@ -13,7 +13,7 @@
 					@click="goToSpacial(item.course_name)"
 					v-for="item of courseList"
 					:key="item.course_id">
-						<div class="img-box"><img  v-lazy="item.course_cover" alt=""></div>
+						<div class="img-box"><img  v-lazy="item.http_img " alt=""></div>
 						<div class="word">
 							<h1>{{item.course_name}}</h1>
 							<h2>*{{item.course_slogan}}</h2>
@@ -161,6 +161,11 @@ export default {
 						response.content.length==0?
 						this.$message.error('getCourseList数据为空'):
 						this.courseList = response.content
+						this.courseList.forEach((item,index)=>{
+							if(item.course_cover!=''){
+								this.courseList[index].http_img = window.g.http+item.course_cover
+							}
+						})
 					}
 					console_log(response)
 					}).catch(error => {
