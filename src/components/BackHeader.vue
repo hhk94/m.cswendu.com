@@ -4,7 +4,7 @@
 			<div class="m-back" @click="back()">
 				<img src="@/assets/img/m-back.png" alt="">
 			</div>
-			<div class="m-logo">
+			<div class="m-logo" @click="home()">
 				<img src="@/assets/img/m-logo.png" alt="">
 			</div>
 		</div>
@@ -34,6 +34,9 @@ export default {
 	methods:{
 		back(){
 			this.$router.go(-1);
+		},
+		home(){
+			this.$router.push({path:'/shouye'}).catch(err => {err})
 		}
 	}
 }

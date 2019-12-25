@@ -65,6 +65,11 @@
 #### 2019-12-23
 - 1.修复懒加载 - 加载图片问题
 
+#### 2019-12-24
+- 1.修复wx-sdk分享，
+- window.location.herf 在vue hash模式下，获取的url有一定几率重复为首页，
+- 因此改为截取#前url地址，拼接 路由 to.path，解决问题 
+
 
 ## Project setup
 ```

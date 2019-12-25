@@ -110,7 +110,7 @@ export function WxParams(data) {
 	})
 }
 
-export function shareWx(){
+export function shareWx(path){
 	let url = encodeURI(window.location.href);
 	let data ={
 		url:url.split("#")[0]
@@ -128,7 +128,7 @@ export function shareWx(){
 				let params = {
 					title: window.g.title, // 分享标题
 					desc: window.g.description, // 分享描述
-					link:url.split("#")[0]+"#"+url.split("#")[1], // 分享链接
+					link:url.split("#")[0]+"#"+path, // 分享链接
 					imgUrl: window.g.WxShareImgUrl, // 分享图标
 				}
 				WxConfig(response.content,params)

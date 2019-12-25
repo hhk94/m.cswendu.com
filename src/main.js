@@ -59,11 +59,11 @@ router.beforeEach((to, from, next) => {
 		window.g.title = '文都考研【官网】全年集训营火热招生中'
 		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
 	}else if(to.path =='/spacial/spacial-2'){
-		window.g.title = '文都考研【官网】彩虹卡火热招生中'
-		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+		window.g.title = '文都考研【官网】彩虹卡高端辅导课程'
+		window.g.description = '周末辅导班，小班授课，一对一专业课!'
 	}else if(to.path =='/spacial/spacial-3'){
-		window.g.title = '文都考研【官网】在职考研火热进行中'
-		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
+		window.g.title = '文都考研【官网】在职考研周末面授班'
+		window.g.description = '周末辅导班，小班授课，一对一专业课！'
 	}else if(to.path =='/shouye'){
 		window.g.title = '文都考研-【官网】文都考研_考试专家助你飞速成功'
 		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
 		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
 	}
 	
-	shareWx()
+	shareWx(to.path)
 	
 	
 	// if (to.path === "/course"){

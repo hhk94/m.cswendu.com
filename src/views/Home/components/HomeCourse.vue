@@ -57,10 +57,12 @@ export default {
 	methods:{
 		goToDetail(course_class_name){
 			console.log(course_class_name)
-			if(course_class_name=='集训营'){
-				this.$router.push({path:'/spacial-1'}).catch(err => {err})
+			if(course_class_name=='鹰飞集训营'){
+				this.$router.push({path:'/spacial/spacial-1'}).catch(err => {err})
+			}else if(course_class_name=='高端彩虹卡'){
+				this.$router.push({path:'/spacial/spacial-2'}).catch(err => {err})
 			}else{
-				this.$router.push({path:'/spacial-2'}).catch(err => {err})
+				this.$router.push({path:'/spacial/spacial-3'}).catch(err => {err})
 			}
 		},
 		tabChange(item,id){
