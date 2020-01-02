@@ -152,7 +152,7 @@ export default {
 			this.scroll.on('scroll',(pos)=>{
 				const top = -pos.y
 				top>0?(this.alreadyTop = false):(this.alreadyTop = true)
-				console_log(this.alreadyTop)
+				// console_log(this.alreadyTop)
 				if(top>60){
 					let opacity = top/140
 					opacity = opacity>1?1:opacity
@@ -169,6 +169,7 @@ export default {
 				console_log('pullingUp')
 				
 				if(!this.footer_bottom){
+					// console.log(this.footer_bottom)
 					this.getCourseList()
 					this.scroll.finishPullUp();
 					
@@ -361,7 +362,8 @@ export default {
 					margin: 4% 0;
 					h1{
 						font-size: @tab-size;
-						color: #525252;
+						color: #131313;
+						font-weight: bold;
 					}
 					h2{
 						margin-top: 0.1rem;

@@ -252,6 +252,8 @@ export default {
 		margin: 0 auto;
 		padding-bottom:1rem;
 		.title{
+			font-weight: bold;
+			line-height: 0.44rem;
 			font-size: 0.36rem;
 			color: #323232;
 		}

@@ -86,13 +86,15 @@ export default {
 		
 		}
 	},
-	created() {
-		this.address = this.$route.query.address
-		this.name = this.$route.query.name
-	},
+	// created() {
+		
+		
+	// },
 	activated() {
 		this.init()
-		console_log(this.address)
+		this.address = this.$route.query.address
+		this.name = this.$route.query.name
+		console_log(this.address,this.name)
 	},
 	mounted() {
 		console_log('mounted')
@@ -182,7 +184,7 @@ export default {
 		.word{
 			width: @design-center;
 			margin: 0 auto;
-			margin-top: 100px;
+			margin-top: 1.5rem;
 			h1{
 				font-size: 0.36rem;
 				color: white;

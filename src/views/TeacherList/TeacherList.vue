@@ -284,7 +284,7 @@ export default {
 				.img-box{
 					width: 100%;
 					padding-bottom: 128.6%;
-					background: red;
+					// background: red;
 					overflow: hidden;
 					height: 0;
 					img{

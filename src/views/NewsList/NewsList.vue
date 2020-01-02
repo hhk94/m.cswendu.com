@@ -254,8 +254,9 @@ export default {
 					// background: bisque;
 					margin: 0.2rem 0;
 					h1{
+						font-weight: bold;
 						font-size: @tab-size;
-						color: #525252;
+						color: #131313;
 						.word-two-line;
 						line-height: @sec-line-height;
 					}

@@ -1,5 +1,5 @@
-const log = false;
-// const log = true;
+// const log = false;
+const log = true;
 export function console_log(txt) {
 	if (txt === 0 || txt === "0") {
 	// empty

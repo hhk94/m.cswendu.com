@@ -16,7 +16,7 @@
 			<div class="m-logo" @click="back()">
 				<img src="@/assets/img/m-logo.png" alt="">
 			</div>
-			<div class="m-phone">
+			<div class="m-phone" @click="tel()">
 				<img src="@/assets/img/m-phone.png" alt="">
 			</div>
 		</div>
@@ -52,6 +52,9 @@ export default {
 		back(){
 			// this.$router.go(-1);
 			this.$router.push({path:'/shouye'}).catch(err => {err})
+		},
+		tel(){
+			window.locaion.href = 'tel://15367826050'
 		}
 	}
 }

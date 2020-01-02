@@ -181,7 +181,7 @@ export default {
 			if(img){
 				if (length) {
 					let timer = setInterval(() => {
-						console_log(img[count])
+						// console_log(img[count])
 					if (count == length) {
 						// console_log('refresh')
 						this.scroll.refresh()

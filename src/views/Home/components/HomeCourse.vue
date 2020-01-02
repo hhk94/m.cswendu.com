@@ -130,6 +130,7 @@ export default {
 				margin: 0 auto;
 				overflow: hidden;
 				h1{
+					font-weight: bold;
 					.word-just-one-line;
 					margin-top: 0.1rem;
 					font-size: @tab-size;

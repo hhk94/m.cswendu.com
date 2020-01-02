@@ -110,17 +110,23 @@ export function WxParams(data) {
 	})
 }
 
-export function shareWx(path){
+export function shareWx(fullpath){
 	let url = encodeURI(window.location.href);
 	let data ={
 		url:url.split("#")[0]
 	}
-	console_log(window)
+	// console_log(window)
 	// console_log(url.split("#")[0])
+	let url_ = url.split("#")[1]
+	let url_params = url_.split("?")[1]
+	
+	console_log(url_)
+	console_log(url_params)
+	
 	new Promise((resolve, reject) => {
 		WxParams(data).then(response => {
 			resolve(response)
-			// console_log(response)
+			console_log(response)
 			if(response.state==0){
 				this.$message.error('Wx接口错误');
 			}else if(response.state==1){
@@ -128,9 +134,11 @@ export function shareWx(path){
 				let params = {
 					title: window.g.title, // 分享标题
 					desc: window.g.description, // 分享描述
-					link:url.split("#")[0]+"#"+path, // 分享链接
+					link:url.split("#")[0]+"#"+fullpath, // 分享链接
+					// link:url.split("#")[0]+"#"+path+"?"+url_params, // 分享链接
 					imgUrl: window.g.WxShareImgUrl, // 分享图标
 				}
+				console_log('微信配置')
 				WxConfig(response.content,params)
 			}
 			}).catch(error => {
@@ -158,7 +166,7 @@ export function WxConfig(res,data) {
 			"onMenuShareWeibo",
 		]
 	});
-	console.log(data)
+	console_log(data)
 	wx.ready(function () {
 		let shareData = {
 		title: data.title,
@@ -166,10 +174,10 @@ export function WxConfig(res,data) {
 		link: data.link,
 		imgUrl: data.imgUrl,
 		success: function () {
-			console.log("分享成功");
+			console_log("分享成功");
 		},
 		cancel: function () {
-			console.log("分享取消");
+			console_log("分享取消");
 		}
 		};
 

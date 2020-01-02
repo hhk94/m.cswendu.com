@@ -221,6 +221,7 @@ export default {
 				width: calc(~"100% - 0.92rem");
 				padding:0 0.3rem;
 				.word-title{
+					font-weight: bold;
 					font-size: @tab-size;
 					line-height: 0.3rem;
 					color: #525252;

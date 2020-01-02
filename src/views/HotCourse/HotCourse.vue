@@ -223,7 +223,7 @@ export default {
 				float: left;
 				margin: 2%;
 				width: 53.9%;
-				background: red;
+				// background: red;
 				padding-bottom: 33.1%;
 				overflow: hidden;
 				height: 0;
@@ -239,6 +239,7 @@ export default {
 				height: 0;
 				position: relative;
 				h1{
+					font-weight: bold;
 					margin-top: 0.5rem;
 					font-size: 0.3rem;
 					color: #323232;

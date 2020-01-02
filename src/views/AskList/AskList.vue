@@ -221,7 +221,8 @@ export default {
 					width: 80%;
 					margin: 0 0.1rem;
 					font-size: @title;
-					color: #a3a3a3;
+					color: #131313;
+					font-weight: bold;
 					line-height: 0.4rem;
 				}
 				

@@ -67,8 +67,15 @@
 
 #### 2019-12-24
 - 1.修复wx-sdk分享，
-- window.location.herf 在vue hash模式下，获取的url有一定几率重复为首页，
-- 因此改为截取#前url地址，拼接 路由 to.path，解决问题 
+-   window.location.herf 在vue hash模式下，获取的url有一定几率重复为首页，
+-   因此改为截取#前url地址，拼接 路由 to.path，解决问题 
+
+#### 2019-01-02
+- 1.修改整体样式
+- 2.修改地址详情  名字和地点未变的bug，将参数获取从created中移出
+- 3.修复wx-sdk分享，
+-   采用拼接to.path ?后参数 path不会自带，因此详情页分享出现问题，采用拼接?后参数解决
+- 4._3的问题，可以采用 拼接to.fullpath 解决  
 
 
 ## Project setup

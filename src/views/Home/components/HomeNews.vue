@@ -120,6 +120,7 @@ export default {
 				height:0;
 				position: relative;
 				h1{
+					font-weight: bold;
 					font-size: @tab-size;
 					color: @tab-color;
 					line-height: @sec-line-height;

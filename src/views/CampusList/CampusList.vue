@@ -96,6 +96,7 @@ export default {
 			this.scroll.scrollTo(0,0,1000) 
 		},
 		lookMap(address,name){
+			// console.log(address,name)
 			this.$router.push({path:'/campus-detail',query:{address:address,name:name}}).catch(err => {err})
 		},
 		async init(){
@@ -236,7 +237,7 @@ export default {
 		width: 100%;
 		height: 0;
 		padding-bottom: 35.1%;
-		background: url('~@/assets/img/m-teacher-bg.png') no-repeat center center /cover;
+		background: url('~@/assets/img/m-area-bg.png') no-repeat center center /cover;
 	}
 	.campus-center{
 		width: @design-center;

@@ -50,8 +50,8 @@ Vue.use(VueLazyload, {
 })
 //全局路由守卫 - 进入任何页面都获取一次token - 后端要求
 router.beforeEach((to, from, next) => {
-	console_log('to.path')
-	console_log(to.path)
+	// console_log('to.path')
+	console_log(to)
 	console_log('此时执行')
 	storeTotal.dispatch('Home/footerClick',to.path);	
 	//进入页面就获取公共token
@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
 		window.g.description = '全日制辅导，班主任督学，考研就是要赢得漂亮！'
 	}
 	
-	shareWx(to.path)
+	shareWx(to.fullPath)
 	
 	
 	// if (to.path === "/course"){
